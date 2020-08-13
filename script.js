@@ -7,6 +7,7 @@ const green = '#5BBA6F';
 const black = '#423E3B';
 //mint green A2FAA3
 
+
 function getRandomInt(max) {
   return Math.floor(Math.random() * Math.floor(max));
 }
