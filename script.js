@@ -1,10 +1,10 @@
 let arr = [];
 let inputArraySize;
-const blue="#F7ECE1";
-const yellow="#F5F749";
-const red="#D95D39";
-const green="#5BBA6F";
-const black="#423E3B";
+const blue = '#F7ECE1';
+const yellow = '#F5F749';
+const red = '#D95D39';
+const green = '#5BBA6F';
+const black = '#423E3B';
 //mint green A2FAA3
 
 function getRandomInt(max) {
@@ -210,5 +210,59 @@ async function doBasicSort() {
       bars[previous.j].style.backgroundColor = blue;
     if (Number.isInteger(previous.i))
       bars[previous.i].style.backgroundColor = blue;
+  }
+}
+function animationArrayForLinearSearch(Array) {
+  let LinearSearch = [];
+  let x = Number(document.getElementById('searchNumber').value);
+  let found = false;
+  for (let i = 0; i < Array.length; i++) {
+    if (Array[i] === x) {
+      found = true;
+      LinearSearch.push({
+        idx: i,
+        state: 'found',
+      });
+      break;
+    } else {
+      LinearSearch.push({
+        idx: i,
+        state: 'searching',
+      });
+    }
+  }
+  if (!found) {
+    LinearSearch.push({
+      idx: Array.length - 1,
+      state: 'not-found',
+    });
+  }
+  return LinearSearch;
+}
+
+async function dolinearSearch() {
+  let animationspeed = Number(document.getElementById('animation_speed').value);
+  let animationArray = animationArrayForLinearSearch(arr);
+  let previous;
+  let bars = Array.from(document.getElementById('addbarshere').children);
+  for (let i = 0; i < animationArray.length; ++i) {
+    let animation = animationArray[i];
+    await sleep(animationspeed);
+    if (previous) {
+      if (Number.isInteger(previous.idx))
+        bars[previous.idx].style.backgroundColor = blue;
+    }
+    previous = animation;
+    if (animation.state === 'found') {
+      bars[animation.idx].style.backgroundColor = green;
+      await sleep(1000);
+      bars[animation.idx].style.backgroundColor = blue;
+    } else if (animation.state === 'searching') {
+      bars[animation.idx].style.backgroundColor = yellow;
+    } else if (animation.state === 'not-found') {
+      bars[animation.idx].style.backgroundColor = red;
+      await sleep(1000);
+      bars[animation.idx].style.backgroundColor = blue;
+    }
   }
 }
