@@ -15,44 +15,55 @@
     <title>Page Title</title>
   </head>
   <body>
+    <div class="inputs">
+    <input
+    type="number"
+    id="arraysize"
+    class="ipt"
+    placeholder="array size"
+    />
+    <input
+    type="number"
+    id="searchNumber"
+    class="ipt"
+    placeholder="number to search for"
+    />
+    <label class="labelforslider">Animation Speed</label>
+    <input
+    type="range"
+    min="0"
+    max="1000"
+    value="500"
+    class="slider"
+    id="animation_speed"
+    />
+  </div>
+    
     
     <div class="buttons">
-      <input
-      type="number"
-      id="arraysize"
-      class="ipt"
-      placeholder="array size"
-      />
-      <input
-      type="number"
-      id="searchNumber"
-      class="ipt"
-      placeholder="number to search for" 
-      />
-      <input
-      type="number"
-      id="animation_speed"
-      class="ipt"
-      placeholder="animation speed" 
-      />
-      
-      <button  id="generate_array" class="btn btn-primary" onclick="generateArray()">
-        Generate Array
-      </button>
-      <button id="binary_search" class="btn btn-primary" onclick="doBinarySearch()">
-        Binary search
-      </button>
-      <button id="" class="btn btn-primary" onclick="doBasicSort()">
-        Basic Sort
-      </button>
-      <button id="" class="btn btn-primary" onclick="dolinearSearch()">
-        linear Search
-      </button>
-    </div>
-    <div calss="addbarshere" id="addbarshere">
-      
-    </div>
+      <button
+      id="generate_array"
+      class="btn btn-primary"
+      onclick="generateArray()"
+      >
+      Generate Array
+    </button>
+    <button
+    id="binary_search"
+    class="btn btn-primary"
+    onclick="doBinarySearch()"
+    >
+    Binary search
+  </button>
+  <button id="" class="btn btn-primary" onclick="doBasicSort()">
+    Basic Sort
+  </button>
+  <button id="" class="btn btn-primary" onclick="dolinearSearch()">
+    linear Search
+  </button>
+</div>
+<div calss="addbarshere" id="addbarshere"></div>
+</div>
   </body>
   <script src="script.js"></script>
-  </html>
-  
+</html>

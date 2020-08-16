@@ -7,7 +7,6 @@ const green = '#5BBA6F';
 const black = '#423E3B';
 //mint green A2FAA3
 
-
 function getRandomInt(max) {
   return Math.floor(Math.random() * Math.floor(max));
 }
@@ -84,13 +83,17 @@ function animationArrayForBinarySearch(Array) {
 
 async function doBinarySearch() {
   // doBasicSort();
-  let animationspeed = Number(document.getElementById('animation_speed').value);
+
   let animationArray = animationArrayForBinarySearch(arr);
   let previous;
   let bars = Array.from(document.getElementById('addbarshere').children);
   arr.sort((a, b) => a - b);
   bars.sort((a, b) => parseInt(a.style.height) - parseInt(b.style.height));
   for (let i = 0; i < animationArray.length; ++i) {
+    let animationspeed = Number(
+      document.getElementById('animation_speed').value
+    );
+    animationspeed = 1000 - animationspeed;
     let animation = animationArray[i];
     //console.log(animation.state);
     //console.log(bars);
@@ -174,11 +177,15 @@ function animationArrayForBasicSort(Array) {
   return basicSortAnimations;
 }
 async function doBasicSort() {
-  let animationspeed = Number(document.getElementById('animation_speed').value);
   let animationArray = animationArrayForBasicSort(arr);
+
   let previous;
   let bars = Array.from(document.getElementById('addbarshere').children);
   for (let i = 0; i < animationArray.length; ++i) {
+    let animationspeed = Number(
+      document.getElementById('animation_speed').value
+    );
+    animationspeed = 1000 - animationspeed;
     let animation = animationArray[i];
     await sleep(animationspeed);
     if (previous) {
@@ -242,11 +249,14 @@ function animationArrayForLinearSearch(Array) {
 }
 
 async function dolinearSearch() {
-  let animationspeed = Number(document.getElementById('animation_speed').value);
   let animationArray = animationArrayForLinearSearch(arr);
   let previous;
   let bars = Array.from(document.getElementById('addbarshere').children);
   for (let i = 0; i < animationArray.length; ++i) {
+    let animationspeed = Number(
+      document.getElementById('animation_speed').value
+    );
+    animationspeed = 1000 - animationspeed;
     let animation = animationArray[i];
     await sleep(animationspeed);
     if (previous) {

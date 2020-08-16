@@ -7,9 +7,10 @@ body {
   width: 15px;
   height: 200px;
   display: inline-block;
-  margin-right: 5px;
+  margin-right: 3px;
   margin-top: 100px;
   background-color: #F7ECE1;
+  border-radius: 30000px;
 
 }
 .addbarshere {
@@ -50,7 +51,66 @@ body {
   color: #2f363f;
   margin: 0 12px;
 }
+/* //slider */
+.slidecontainer {
+  width: 25%; /* Width of the outside container */
+  display: block;
+  position: absolute;
+}
 
+/* The slider itself */
+.buttons
+{
+  
+  display: flex;
+  position: relative;
+  vertical-align: auto;
+}
+.inputs{
+  display: flex;
+  width: max-content;
+  margin-bottom: 10px;
+}
+.labelforslider{
+  color: #d3d3d3;
+  margin-right: 10px;
+  width: 100px;
+  text-align: center;
+  
+}
+.slider {
+  margin-left: 10px;
+  margin-top: 10px;
+  width: 100%; /* Full-width */
+  height: 20px; /* Specified height */
+  background: #d3d3d3; /* Grey background */
+  outline: none; /* Remove outline */
+  opacity: 0.7; /* Set transparency (for mouse-over effects on hover) */
+  -webkit-transition: .2s; /* 0.2 seconds transition on hover */
+  transition: opacity .2s;
+}
+
+/* Mouse-over effects */
+.slider:hover {
+  opacity: 1; /* Fully shown on mouse-over */
+}
+
+/* The slider handle (use -webkit- (Chrome, Opera, Safari, Edge) and -moz- (Firefox) to override default look) */
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none; /* Override default look */
+  appearance: none;
+  width: 2%; /* Set a specific slider handle width */
+  height: 20px; /* Slider handle height */
+  background: #4CAF50; /* Green background */
+  cursor: pointer; /* Cursor on hover */
+}
+
+.slider::-moz-range-thumb {
+  width: 25%; /* Set a specific slider handle width */
+  height: 25px; /* Slider handle height */
+  background: #4CAF50; /* Green background */
+  cursor: pointer; /* Cursor on hover */
+}
 
 @-webkit-keyframes fadein {
   from {
