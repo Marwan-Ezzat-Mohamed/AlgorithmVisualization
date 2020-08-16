@@ -1,69 +1,67 @@
 <!DOCTYPE html>
 <html>
-  <link
-    rel="stylesheet"
-    href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
-  />
-
-  <!-- jQuery library -->
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
-  <!-- Latest compiled JavaScript -->
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-  <link rel="stylesheet" href="css.css" />
-  <head>
-    <title>Page Title</title>
-  </head>
-  <body>
-    <div class="inputs">
-    <input
-    type="number"
-    id="arraysize"
-    class="ipt"
-    placeholder="array size"
-    />
-    <input
-    type="number"
-    id="searchNumber"
-    class="ipt"
-    placeholder="number to search for"
-    />
-    <label class="labelforslider">Animation Speed</label>
-    <input
-    type="range"
-    min="0"
-    max="1000"
-    value="500"
-    class="slider"
-    id="animation_speed"
-    />
-  </div>
-    
-    
-    <div class="buttons">
-      <button
-      id="generate_array"
-      class="btn btn-primary"
-      onclick="generateArray()"
-      >
-      Generate Array
-    </button>
-    <button
-    id="binary_search"
-    class="btn btn-primary"
-    onclick="doBinarySearch()"
-    >
-    Binary search
-  </button>
-  <button id="" class="btn btn-primary" onclick="doBasicSort()">
-    Basic Sort
-  </button>
-  <button id="" class="btn btn-primary" onclick="dolinearSearch()">
-    linear Search
-  </button>
-</div>
-<div calss="addbarshere" id="addbarshere"></div>
-</div>
-  </body>
-  <script src="script.js"></script>
+   <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+      />
+   <!-- jQuery library -->
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+   <!-- Latest compiled JavaScript -->
+   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+   <link rel="stylesheet" href="css.css" />
+   <head>
+      <title>Page Title</title>
+   </head>
+   <body>
+      <div class="inputs">
+         <input
+            type="number"
+            id="arraysize"
+            class="ipt"
+            placeholder="array size"
+            />
+         <input
+            type="number"
+            id="searchNumber"
+            class="ipt"
+            placeholder="number to search for"
+            />
+      </div>
+      <div class="slidecontainer">
+         <label class="labelforslider">Animation Speed</label>
+         <input
+            type="range"
+            min="0"
+            max="1000"
+            value="500"
+            class="slider"
+            id="animation_speed"
+            />
+      </div>
+      <div class="buttons">
+         <button
+            id="generate_array"
+            class="btn btn-primary"
+            onclick="generateArray()"
+            >
+         Generate Array
+         </button>
+         <button
+            id="binary_search"
+            class="btn btn-primary"
+            onclick="doBinarySearch()"
+            >
+         Binary search
+         </button>
+         <button id="" class="btn btn-primary" onclick="doBasicSort()">
+         Basic Sort
+         </button>
+         <button id="" class="btn btn-primary" onclick="dolinearSearch()">
+         linear Search
+         </button>
+      </div>
+      <div calss="addbarshere" id="addbarshere"></div>
+      </div>
+   </body>
+   <script src="script.js"></script>
 </html>

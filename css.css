@@ -51,42 +51,34 @@ body {
   color: #2f363f;
   margin: 0 12px;
 }
+.inputs{
+  display: block;
+  float: left;
+  
+}
+.labelforslider{
+  color: #F7ECE1;
+  text-align: center;
+  margin-left: 33%;
+}
 /* //slider */
 .slidecontainer {
-  width: 25%; /* Width of the outside container */
-  display: block;
-  position: absolute;
+  width: 33%; /* Width of the outside container */
+  display: inline-block;
+  
+  
 }
 
 /* The slider itself */
-.buttons
-{
-  
-  display: flex;
-  position: relative;
-  vertical-align: auto;
-}
-.inputs{
-  display: flex;
-  width: max-content;
-  margin-bottom: 10px;
-}
-.labelforslider{
-  color: #d3d3d3;
-  margin-right: 10px;
-  width: 100px;
-  text-align: center;
-  
-}
 .slider {
-  margin-left: 10px;
-  margin-top: 10px;
-  width: 100%; /* Full-width */
-  height: 20px; /* Specified height */
-  background: #d3d3d3; /* Grey background */
-  outline: none; /* Remove outline */
-  opacity: 0.7; /* Set transparency (for mouse-over effects on hover) */
-  -webkit-transition: .2s; /* 0.2 seconds transition on hover */
+  -webkit-appearance: none;
+  width: 100%;
+  height: 15px;
+  border-radius: 5px;  
+  background: #d3d3d3;
+  outline: none;
+  opacity: 0.7;
+  -webkit-transition: .2s;
   transition: opacity .2s;
 }
 
@@ -97,19 +89,21 @@ body {
 
 /* The slider handle (use -webkit- (Chrome, Opera, Safari, Edge) and -moz- (Firefox) to override default look) */
 .slider::-webkit-slider-thumb {
-  -webkit-appearance: none; /* Override default look */
+  -webkit-appearance: none;
   appearance: none;
-  width: 2%; /* Set a specific slider handle width */
-  height: 20px; /* Slider handle height */
-  background: #4CAF50; /* Green background */
-  cursor: pointer; /* Cursor on hover */
+  width: 25px;
+  height: 25px;
+  border-radius: 50%; 
+  background: #4CAF50;
+  cursor: pointer;
 }
 
 .slider::-moz-range-thumb {
-  width: 25%; /* Set a specific slider handle width */
-  height: 25px; /* Slider handle height */
-  background: #4CAF50; /* Green background */
-  cursor: pointer; /* Cursor on hover */
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background: #4CAF50;
+  cursor: pointer;
 }
 
 @-webkit-keyframes fadein {
