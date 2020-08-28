@@ -1,3 +1,4 @@
+
 let arr = [];
 let inputArraySize;
 const blue = '#F7ECE1';
@@ -275,5 +276,61 @@ async function dolinearSearch() {
       await sleep(1000);
       bars[animation.idx].style.backgroundColor = blue;
     }
+  }
+}
+
+
+async function merge(a, low, m, high) {
+  var i, j, k;
+  var temp = [];
+  var len = m - low;
+  console.log(len, 'arr: ', a);
+  let bars = Array.from(document.getElementById('addbarshere').children);
+  let animationspeed = Number(
+    document.getElementById('animation_speed').value
+  );
+  for (i = 0; i < len; i++) {
+    //bars[i].style.backgroundColor=red;
+    temp[i] = a[low + i];
+  }
+  i = 0;
+  j = m;
+  k = low;
+  while (i < len && j < high) {
+    let animationspeed = Number(
+      document.getElementById('animation_speed').value
+    );
+    if (temp[i] <= a[j]) {
+      bars[k].style.height = temp[i]+'px';
+      bars[k].style.backgroundColor=yellow;
+      //await sleep(animationspeed);
+      bars[k].style.backgroundColor=blue;
+      a[k++] = temp[i++];
+    } else {
+      bars[k].style.height = bars[j].style.height;
+      bars[k].style.backgroundColor=yellow;
+      //await sleep(animationspeed);
+      bars[k].style.backgroundColor=blue;
+      a[k++] = a[j++];
+    }
+  }
+  while (i < len) {
+    let animationspeed = Number(
+      document.getElementById('animation_speed').value
+    );
+    bars[k].style.height = temp[i]+'px';
+    bars[k].style.backgroundColor=yellow;
+    //await sleep(100);
+    bars[k].style.backgroundColor=blue;
+    a[k++] = temp[i++];
+  }
+}
+
+function mergesort(a, low, high) {
+  if (high - low > 1) {
+    var m = low + ((high - low) >> 1);
+    mergesort(a, low, m);
+    mergesort(a, m, high);
+    merge(a, low, m, high);
   }
 }
