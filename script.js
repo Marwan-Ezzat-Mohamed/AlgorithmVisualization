@@ -1,5 +1,6 @@
 
 let arr = [];
+let me;
 let inputArraySize;
 const blue = '#F7ECE1';
 const yellow = '#F5F749';
@@ -278,7 +279,6 @@ async function dolinearSearch() {
     }
   }
 }
-
 
 async function merge(a, low, m, high) {
   var i, j, k;
