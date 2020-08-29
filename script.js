@@ -1,4 +1,3 @@
-
 let arr = [];
 let me;
 let inputArraySize;
@@ -284,15 +283,20 @@ async function merge(a, low, m, high) {
   var i, j, k;
   var temp = [];
   var len = m - low;
-  console.log(len, 'arr: ', a);
+  // console.log(len, 'arr: ', a);
   let bars = Array.from(document.getElementById('addbarshere').children);
-  let animationspeed = Number(
-    document.getElementById('animation_speed').value
-  );
+  let animationspeed = Number(document.getElementById('animation_speed').value);
   for (i = 0; i < len; i++) {
-    //bars[i].style.backgroundColor=red;
     temp[i] = a[low + i];
   }
+  for (var x = low; x < high; x++) {
+    bars[x].style.backgroundColor = red;
+  }
+  await sleep(animationspeed);
+  for (var x = low; x < high; x++) {
+    bars[x].style.backgroundColor = blue;
+  }
+
   i = 0;
   j = m;
   k = low;
@@ -301,16 +305,44 @@ async function merge(a, low, m, high) {
       document.getElementById('animation_speed').value
     );
     if (temp[i] <= a[j]) {
-      bars[k].style.height = temp[i]+'px';
-      bars[k].style.backgroundColor=yellow;
-      //await sleep(animationspeed);
-      bars[k].style.backgroundColor=blue;
+      console.log('1:if fst loop tmp: ', temp[i], 'arr j ', a[j]);
+      var temph = bars[k].style.height;
+      bars[k].style.backgroundColor = yellow;
+      bars[k].style.height = temp[i] + 'px';
+      var index;
+      for (var x = low; x < bars.length; x++) {
+        if (bars[x].style.height == temp[i] + 'px') {
+          bars[x].style.backgroundColor = yellow;
+          bars[x].style.height = temph;
+          index = x;
+          break;
+        }
+      }
+      await sleep(animationspeed);
+      bars[k].style.backgroundColor = blue;
+      bars[index].style.backgroundColor = blue;
       a[k++] = temp[i++];
     } else {
+      console.log('2:else fst loop j: ', a[j], ' tmp ', temp[i], ' array ', a);
+      bars[k].style.backgroundColor = yellow;
+      bars[j].style.backgroundColor = yellow;
+      var temph = bars[k].style.height;
       bars[k].style.height = bars[j].style.height;
-      bars[k].style.backgroundColor=yellow;
-      //await sleep(animationspeed);
-      bars[k].style.backgroundColor=blue;
+      bars[j].style.height = temph;
+
+      // for(var x=0;x<bars.length;x++)
+      // {
+      //   if(bars[x].style.height==temp[i]+'px')
+      //   {
+      //     bars[x].style.backgroundColor=yellow;
+      //     bars[x].style.height=temph;
+      //     break;
+      //   }
+      // }
+
+      await sleep(animationspeed);
+      bars[k].style.backgroundColor = blue;
+      bars[j].style.backgroundColor = blue;
       a[k++] = a[j++];
     }
   }
@@ -318,19 +350,30 @@ async function merge(a, low, m, high) {
     let animationspeed = Number(
       document.getElementById('animation_speed').value
     );
-    bars[k].style.height = temp[i]+'px';
-    bars[k].style.backgroundColor=yellow;
-    //await sleep(100);
-    bars[k].style.backgroundColor=blue;
+    var temph = bars[k].style.height;
+    bars[k].style.backgroundColor = yellow;
+    bars[k].style.height = temp[i] + 'px';
+    var index;
+    for (var x = low; x < bars.length; x++) {
+      if (bars[x].style.height == temp[i] + 'px') {
+        bars[x].style.backgroundColor = yellow;
+        bars[x].style.height = temph;
+        index = x;
+        break;
+      }
+    }
+    await sleep(animationspeed);
+    bars[k].style.backgroundColor = blue;
+    bars[index].style.backgroundColor = blue;
     a[k++] = temp[i++];
   }
 }
 
-function mergesort(a, low, high) {
+async function mergesort(a, low, high) {
   if (high - low > 1) {
     var m = low + ((high - low) >> 1);
-    mergesort(a, low, m);
-    mergesort(a, m, high);
-    merge(a, low, m, high);
+    await mergesort(a, low, m);
+    await mergesort(a, m, high);
+    await merge(a, low, m, high);
   }
 }
