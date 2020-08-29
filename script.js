@@ -1,6 +1,5 @@
-let arr = [];
-let me;
-let inputArraySize;
+var arr = [];
+var inputArraySize;
 const blue = '#F7ECE1';
 const yellow = '#F5F749';
 const red = '#D95D39';
@@ -15,8 +14,8 @@ function sleep(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
 function resetArray() {
-  let element = document.getElementById('addbarshere');
-  let child = element.lastElementChild;
+  var element = document.getElementById('addbarshere');
+  var child = element.lastElementChild;
   while (child) {
     element.removeChild(child);
     child = element.lastElementChild;
@@ -25,26 +24,28 @@ function resetArray() {
 function generateArray() {
   resetArray();
   arr.length = 0;
+
   inputArraySize = Number(document.getElementById('arraysize').value);
-  for (let i = 0; i < inputArraySize; ++i) {
-    let randomNumber = getRandomInt(99) + 1;
+
+  for (var i = 0; i < inputArraySize; ++i) {
+    var randomNumber = getRandomInt(99) + 6;
     arr.push(randomNumber);
-    let addhere = document.getElementById('addbarshere');
-    let newbar = document.createElement('div');
+    var addhere = document.getElementById('addbarshere');
+    var newbar = document.createElement('div');
     newbar.className = 'bar';
     newbar.style.height = randomNumber + 'px';
     addhere.appendChild(newbar);
   }
 }
 function animationArrayForBinarySearch(Array) {
-  let binarySearchAnimations = [];
-  let start = 0;
-  let end = Number(document.getElementById('arraysize').value);
+  var binarySearchAnimations = [];
+  var start = 0;
+  var end = Number(document.getElementById('arraysize').value);
   end = end - 1;
-  let found = 0;
-  let x = Number(document.getElementById('searchNumber').value);
+  var found = 0;
+  var x = Number(document.getElementById('searchNumber').value);
   while (start <= end) {
-    let mid = Math.floor((start + end) / 2);
+    var mid = Math.floor((start + end) / 2);
     if (Array[mid] === x) {
       binarySearchAnimations.push({
         mid,
@@ -61,7 +62,6 @@ function animationArrayForBinarySearch(Array) {
         end,
         state: 'searching',
       });
-      //console.log('mid higher', arr[mid], x);
     } else {
       start = mid + 1;
       binarySearchAnimations.push({
@@ -83,21 +83,20 @@ function animationArrayForBinarySearch(Array) {
 }
 
 async function doBinarySearch() {
-  // doBasicSort();
+  var animationArray = animationArrayForBinarySearch(arr);
+  var previous;
+  var bars = Array.from(document.getElementById('addbarshere').children);
 
-  let animationArray = animationArrayForBinarySearch(arr);
-  let previous;
-  let bars = Array.from(document.getElementById('addbarshere').children);
   arr.sort((a, b) => a - b);
   bars.sort((a, b) => parseInt(a.style.height) - parseInt(b.style.height));
-  for (let i = 0; i < animationArray.length; ++i) {
-    let animationspeed = Number(
+
+  for (var i = 0; i < animationArray.length; ++i) {
+    var animationspeed = Number(
       document.getElementById('animation_speed').value
     );
     animationspeed = 1000 - animationspeed;
-    let animation = animationArray[i];
-    //console.log(animation.state);
-    //console.log(bars);
+
+    var animation = animationArray[i];
     await sleep(animationspeed);
     if (previous) {
       if (previous.state === 'searching') {
@@ -143,14 +142,15 @@ async function doBinarySearch() {
 }
 
 function animationArrayForBasicSort(Array) {
-  let basicSortAnimations = [];
-  for (let i = 0; i < Array.length; i++) {
-    let min = i;
+  var basicSortAnimations = [];
+
+  for (var i = 0; i < Array.length; i++) {
+    var min = i;
     basicSortAnimations.push({
       min: i,
       state: 'min',
     });
-    for (let j = i + 1; j < Array.length; j++) {
+    for (var j = i + 1; j < Array.length; j++) {
       basicSortAnimations.push({
         min: min,
         j,
@@ -170,24 +170,25 @@ function animationArrayForBasicSort(Array) {
         i,
         state: 'swap',
       });
-      let tmp = Array[i];
+      var tmp = Array[i];
       Array[i] = Array[min];
       Array[min] = tmp;
     }
   }
   return basicSortAnimations;
 }
-async function doBasicSort() {
-  let animationArray = animationArrayForBasicSort(arr);
 
-  let previous;
-  let bars = Array.from(document.getElementById('addbarshere').children);
-  for (let i = 0; i < animationArray.length; ++i) {
-    let animationspeed = Number(
+async function doBasicSort() {
+  var animationArray = animationArrayForBasicSort(arr);
+  var previous;
+  var bars = Array.from(document.getElementById('addbarshere').children);
+  for (var i = 0; i < animationArray.length; ++i) {
+    var animationspeed = Number(
       document.getElementById('animation_speed').value
     );
     animationspeed = 1000 - animationspeed;
-    let animation = animationArray[i];
+
+    var animation = animationArray[i];
     await sleep(animationspeed);
     if (previous) {
       if (Number.isInteger(previous.min))
@@ -205,7 +206,7 @@ async function doBasicSort() {
       bars[animation.min].style.backgroundColor = red;
       bars[animation.i].style.backgroundColor = red;
 
-      let temp = bars[animation.min].style.height;
+      var temp = bars[animation.min].style.height;
       bars[animation.min].style.height = bars[animation.i].style.height;
       bars[animation.i].style.height = temp;
     } else {
@@ -222,10 +223,11 @@ async function doBasicSort() {
   }
 }
 function animationArrayForLinearSearch(Array) {
-  let LinearSearch = [];
-  let x = Number(document.getElementById('searchNumber').value);
-  let found = false;
-  for (let i = 0; i < Array.length; i++) {
+  var LinearSearch = [];
+  var x = Number(document.getElementById('searchNumber').value);
+  var found = false;
+
+  for (var i = 0; i < Array.length; i++) {
     if (Array[i] === x) {
       found = true;
       LinearSearch.push({
@@ -250,20 +252,23 @@ function animationArrayForLinearSearch(Array) {
 }
 
 async function dolinearSearch() {
-  let animationArray = animationArrayForLinearSearch(arr);
-  let previous;
-  let bars = Array.from(document.getElementById('addbarshere').children);
-  for (let i = 0; i < animationArray.length; ++i) {
-    let animationspeed = Number(
+  var animationArray = animationArrayForLinearSearch(arr);
+  var previous;
+  var bars = Array.from(document.getElementById('addbarshere').children);
+
+  for (var i = 0; i < animationArray.length; ++i) {
+    var animationspeed = Number(
       document.getElementById('animation_speed').value
     );
     animationspeed = 1000 - animationspeed;
-    let animation = animationArray[i];
+
+    var animation = animationArray[i];
     await sleep(animationspeed);
     if (previous) {
       if (Number.isInteger(previous.idx))
         bars[previous.idx].style.backgroundColor = blue;
     }
+
     previous = animation;
     if (animation.state === 'found') {
       bars[animation.idx].style.backgroundColor = green;
@@ -283,88 +288,101 @@ async function merge(a, low, m, high) {
   var i, j, k;
   var temp = [];
   var len = m - low;
-  // console.log(len, 'arr: ', a);
-  let bars = Array.from(document.getElementById('addbarshere').children);
-  let animationspeed = Number(document.getElementById('animation_speed').value);
+  var bars = Array.from(document.getElementById('addbarshere').children);
+
+  var animationspeed = Number(document.getElementById('animation_speed').value);
+  animationspeed=1000-animationspeed;
+  
   for (i = 0; i < len; i++) {
     temp[i] = a[low + i];
   }
-  for (var x = low; x < high; x++) {
+
+  //the current sub array bieng sorted animations
+  for (var x = low; x < high; x++) {                 
     bars[x].style.backgroundColor = red;
   }
   await sleep(animationspeed);
   for (var x = low; x < high; x++) {
     bars[x].style.backgroundColor = blue;
   }
-
+  ///////////
   i = 0;
   j = m;
   k = low;
   while (i < len && j < high) {
-    let animationspeed = Number(
+    var animationspeed = Number(
       document.getElementById('animation_speed').value
     );
+    animationspeed=1000-animationspeed;
+
     if (temp[i] <= a[j]) {
-      console.log('1:if fst loop tmp: ', temp[i], 'arr j ', a[j]);
-      var temph = bars[k].style.height;
-      bars[k].style.backgroundColor = yellow;
-      bars[k].style.height = temp[i] + 'px';
-      var index;
-      for (var x = low; x < bars.length; x++) {
-        if (bars[x].style.height == temp[i] + 'px') {
-          bars[x].style.backgroundColor = yellow;
-          bars[x].style.height = temph;
-          index = x;
-          break;
+     var idx;
+     for (var x = k; x < high; x++) {
+       if (bars[x].style.height == temp[i] + 'px') {
+         idx = x;
+         break;
         }
       }
+
+      //the current value bieng compared animations
+      bars[idx].style.backgroundColor = yellow;
+      bars[k].style.backgroundColor = yellow;
+
+      var temph = bars[k].style.height;
+      bars[k].style.height = temp[i] + 'px';
+      bars[idx].style.height = temph;
+      
       await sleep(animationspeed);
+
       bars[k].style.backgroundColor = blue;
-      bars[index].style.backgroundColor = blue;
+      bars[idx].style.backgroundColor = blue;
+      ///////////
       a[k++] = temp[i++];
+
     } else {
-      console.log('2:else fst loop j: ', a[j], ' tmp ', temp[i], ' array ', a);
+      //the current value bieng compared animations
       bars[k].style.backgroundColor = yellow;
       bars[j].style.backgroundColor = yellow;
+
       var temph = bars[k].style.height;
       bars[k].style.height = bars[j].style.height;
       bars[j].style.height = temph;
 
-      // for(var x=0;x<bars.length;x++)
-      // {
-      //   if(bars[x].style.height==temp[i]+'px')
-      //   {
-      //     bars[x].style.backgroundColor=yellow;
-      //     bars[x].style.height=temph;
-      //     break;
-      //   }
-      // }
-
       await sleep(animationspeed);
+
       bars[k].style.backgroundColor = blue;
       bars[j].style.backgroundColor = blue;
+      ///////////
       a[k++] = a[j++];
     }
   }
   while (i < len) {
-    let animationspeed = Number(
+    var animationspeed = Number(
       document.getElementById('animation_speed').value
-    );
-    var temph = bars[k].style.height;
-    bars[k].style.backgroundColor = yellow;
-    bars[k].style.height = temp[i] + 'px';
-    var index;
-    for (var x = low; x < bars.length; x++) {
-      if (bars[x].style.height == temp[i] + 'px') {
-        bars[x].style.backgroundColor = yellow;
-        bars[x].style.height = temph;
-        index = x;
-        break;
+      );
+      animationspeed=1000-animationspeed;
+      
+      var index;
+      for (var x = low; x < high; x++) {
+        if (bars[x].style.height == temp[i] + 'px') {
+          index = x;
+          break;
+        }
       }
-    }
+      
+    //the remaining values that are left out from the above loop animations
+    bars[k].style.backgroundColor = yellow;
+    bars[index].style.backgroundColor = yellow;
+
+    var temph = bars[k].style.height;
+    bars[k].style.height = temp[i] + 'px';
+    bars[index].style.height = temph;
+
     await sleep(animationspeed);
+
     bars[k].style.backgroundColor = blue;
     bars[index].style.backgroundColor = blue;
+      ///////////
     a[k++] = temp[i++];
   }
 }
