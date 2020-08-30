@@ -322,6 +322,13 @@ async function merge(a, low, m, high) {
          idx = x;
          break;
         }
+        else
+        {
+          bars[x].style.backgroundColor=yellow;
+          await sleep(animationspeed);
+          bars[x].style.backgroundColor=blue;
+          
+        }
       }
 
       //the current value bieng compared animations
@@ -367,6 +374,13 @@ async function merge(a, low, m, high) {
         if (bars[x].style.height == temp[i] + 'px') {
           index = x;
           break;
+        }
+        else
+        {
+          bars[x].style.backgroundColor=yellow;
+          await sleep(animationspeed);
+          bars[x].style.backgroundColor=blue;
+          
         }
       }
       
