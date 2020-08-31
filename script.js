@@ -7,12 +7,38 @@ const green = '#5BBA6F';
 const black = '#423E3B';
 //mint green A2FAA3
 
+//general functions
+function swap(arr, first_Index, second_Index){
+  var temp = arr[first_Index];
+  arr[first_Index] = arr[second_Index];
+  arr[second_Index] = temp;
+}
+
 function getRandomInt(max) {
   return Math.floor(Math.random() * Math.floor(max));
 }
+
 function sleep(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
+
+//make all bars green when soretd then back to the noraml color
+async function falshGreen()
+{
+  var bars = Array.from(document.getElementById('addbarshere').children);
+  for(var i=0;i<bars.length;i++)
+  {
+    bars[i].style.backgroundColor=green;
+  }
+  await sleep(1000);
+  for(var i=0;i<bars.length;i++)
+  {
+    bars[i].style.backgroundColor=blue;
+  }
+}
+
+//////
+
 function resetArray() {
   var element = document.getElementById('addbarshere');
   var child = element.lastElementChild;
@@ -221,6 +247,7 @@ async function doBasicSort() {
     if (Number.isInteger(previous.i))
       bars[previous.i].style.backgroundColor = blue;
   }
+  falshGreen();
 }
 function animationArrayForLinearSearch(Array) {
   var LinearSearch = [];
@@ -409,3 +436,59 @@ async function mergesort(a, low, high) {
     await merge(a, low, m, high);
   }
 }
+
+async function doMergeSort()
+{
+  await mergesort(arr,0,arr.length)
+  await falshGreen();
+}
+
+//bubble sort
+
+
+
+async function doBubbleSort(){
+  var bars = Array.from(document.getElementById('addbarshere').children);
+
+  var animationspeed = Number(document.getElementById('animation_speed').value);
+  animationspeed=1000-animationspeed;
+
+  for(var i=0;i<arr.length;i++)
+  {
+    for(var j=0;j<arr.length-i-1;j++)
+    {
+      if(arr[j]>arr[j+1])
+      {
+        swap(arr,j,j+1);
+        bars[j].style.backgroundColor=yellow;
+        bars[j+1].style.backgroundColor=yellow;
+        
+        var temph = bars[j].style.height;
+        bars[j].style.height = bars[j+1].style.height;
+        bars[j+1].style.height = temph;
+
+        await sleep(animationspeed);
+        bars[j].style.backgroundColor=blue;
+        bars[j+1].style.backgroundColor=blue;
+
+      }
+      else{
+        bars[j].style.backgroundColor=yellow;
+        bars[j+1].style.backgroundColor=yellow;
+        await sleep(animationspeed);
+        bars[j].style.backgroundColor=blue;
+        bars[j+1].style.backgroundColor=blue;
+      }
+      if(j+1===arr.length-i-1)
+      {
+        bars[j+1].style.backgroundColor=green;
+        if(i===arr.length-1-1)
+        {
+          bars[0].style.backgroundColor=green;
+        }
+      }
+    }
+  }
+  falshGreen()
+}
+
