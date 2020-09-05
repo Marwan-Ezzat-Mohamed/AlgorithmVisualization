@@ -8,15 +8,21 @@ const black = '#423E3B';
 //mint green A2FAA3
 
 //general functions
-
+function arraySizeHandler() {
+  var ArraySize = Number(document.getElementById('arraysize').value);
+  if (ArraySize > 100) {
+    alert('Array size must be less than 100');
+    return;
+  }
+  return ArraySize;
+}
 function swap(arr, first_Index, second_Index) {
   var temp = arr[first_Index];
   arr[first_Index] = arr[second_Index];
   arr[second_Index] = temp;
 }
 
-async function getAnimationSpeed()
-{
+async function getAnimationSpeed() {
   var speed = Number(document.getElementById('animation_speed').value);
   speed = 1000 - speed;
   return speed;
@@ -56,7 +62,7 @@ function generateArray() {
   resetArray();
   arr.length = 0;
 
-  inputArraySize = Number(document.getElementById('arraysize').value);
+  inputArraySize = arraySizeHandler();
 
   for (var i = 0; i < inputArraySize; ++i) {
     var randomNumber = getRandomInt(99) + 6;
@@ -122,7 +128,7 @@ async function doBinarySearch() {
   bars.sort((a, b) => parseInt(a.style.height) - parseInt(b.style.height));
 
   for (var i = 0; i < animationArray.length; ++i) {
-    animationspeed=await getAnimationSpeed();
+    animationspeed = await getAnimationSpeed();
 
     var animation = animationArray[i];
     await sleep(animationspeed);
@@ -212,7 +218,7 @@ async function doBasicSort() {
   var bars = Array.from(document.getElementById('addbarshere').children);
 
   for (var i = 0; i < animationArray.length; ++i) {
-    animationspeed=await getAnimationSpeed();
+    animationspeed = await getAnimationSpeed();
 
     var animation = animationArray[i];
     await sleep(animationspeed);
@@ -221,7 +227,6 @@ async function doBasicSort() {
         bars[previous.min].style.backgroundColor = blue;
       if (Number.isInteger(previous.j))
         bars[previous.j].style.backgroundColor = blue;
-      
     }
     previous = animation;
     if (animation.state === 'compare') {
@@ -282,10 +287,10 @@ async function dolinearSearch() {
   var animationArray = animationArrayForLinearSearch(arr);
   var previous;
   var bars = Array.from(document.getElementById('addbarshere').children);
-  animationspeed=await getAnimationSpeed();
+  animationspeed = await getAnimationSpeed();
 
   for (var i = 0; i < animationArray.length; ++i) {
-    animationspeed=await getAnimationSpeed();
+    animationspeed = await getAnimationSpeed();
 
     var animation = animationArray[i];
     await sleep(animationspeed);
@@ -315,7 +320,7 @@ async function merge(a, low, m, high) {
   var len = m - low;
   var bars = Array.from(document.getElementById('addbarshere').children);
 
-  animationspeed=await getAnimationSpeed();
+  animationspeed = await getAnimationSpeed();
 
   for (i = 0; i < len; i++) {
     temp[i] = a[low + i];
@@ -334,12 +339,12 @@ async function merge(a, low, m, high) {
   j = m;
   k = low;
   while (i < len && j < high) {
-    animationspeed=await getAnimationSpeed();
+    animationspeed = await getAnimationSpeed();
 
     if (temp[i] <= a[j]) {
       var idx;
       for (var x = k; x < high; x++) {
-        animationspeed=await getAnimationSpeed();
+        animationspeed = await getAnimationSpeed();
         if (bars[x].style.height == temp[i] + 'px') {
           idx = x;
           break;
@@ -382,10 +387,10 @@ async function merge(a, low, m, high) {
     }
   }
   while (i < len) {
-    animationspeed=await getAnimationSpeed();
+    animationspeed = await getAnimationSpeed();
     var index;
     for (var x = low; x < high; x++) {
-      animationspeed=await getAnimationSpeed();
+      animationspeed = await getAnimationSpeed();
       if (bars[x].style.height == temp[i] + 'px') {
         index = x;
         break;
@@ -432,12 +437,12 @@ async function doMergeSort() {
 async function doBubbleSort() {
   var bars = Array.from(document.getElementById('addbarshere').children);
 
-  animationspeed=await getAnimationSpeed();
+  animationspeed = await getAnimationSpeed();
 
   for (var i = 0; i < arr.length; i++) {
-    animationspeed=await getAnimationSpeed();
+    animationspeed = await getAnimationSpeed();
     for (var j = 0; j < arr.length - i - 1; j++) {
-      animationspeed=await getAnimationSpeed();
+      animationspeed = await getAnimationSpeed();
       if (arr[j] > arr[j + 1]) {
         swap(arr, j, j + 1);
         bars[j].style.backgroundColor = yellow;
@@ -471,24 +476,24 @@ async function doBubbleSort() {
 //quick sort
 // logic code from : https://www.guru99.com/quicksort-in-javascript.html
 
-async function partition( left, right) {
+async function partition(left, right) {
   var bars = Array.from(document.getElementById('addbarshere').children);
 
-  animationspeed=await getAnimationSpeed();
+  animationspeed = await getAnimationSpeed();
 
   var pivot = arr[Math.floor((right + left) / 2)], //middle element
-  i = left, //left pointer
-  j = right; //right pointer
- // console.log(pivot);
+    i = left, //left pointer
+    j = right; //right pointer
+  // console.log(pivot);
   // bars[j].style.backgroundColor=yellow;
   while (i <= j) {
     await sleep(animationspeed);
-    bars[Math.floor((right + left) / 2)].style.backgroundColor=black;
+    bars[Math.floor((right + left) / 2)].style.backgroundColor = black;
 
-    animationspeed=await getAnimationSpeed();
+    animationspeed = await getAnimationSpeed();
 
     while (arr[i] < pivot) {
-      animationspeed=await getAnimationSpeed();
+      animationspeed = await getAnimationSpeed();
 
       bars[j].style.backgroundColor = yellow;
       bars[i].style.backgroundColor = yellow;
@@ -499,9 +504,9 @@ async function partition( left, right) {
     }
 
     bars[i].style.backgroundColor = blue;
-    
+
     while (arr[j] > pivot) {
-      animationspeed=getAnimationSpeed();
+      animationspeed = getAnimationSpeed();
       bars[i].style.backgroundColor = yellow;
       bars[j].style.backgroundColor = yellow;
       await sleep(animationspeed);
@@ -509,28 +514,26 @@ async function partition( left, right) {
 
       j--;
     }
-    
+
     bars[j].style.backgroundColor = blue;
-    bars[Math.floor((right + left) / 2)].style.backgroundColor=black;
+    bars[Math.floor((right + left) / 2)].style.backgroundColor = black;
 
     if (i <= j) {
-
-      bars[Math.floor((right + left) / 2)].style.backgroundColor=black;
+      bars[Math.floor((right + left) / 2)].style.backgroundColor = black;
       bars[j].style.backgroundColor = red;
-      bars[Math.floor((right + left) / 2)].style.backgroundColor=black;
+      bars[Math.floor((right + left) / 2)].style.backgroundColor = black;
       bars[i].style.backgroundColor = red;
-      bars[Math.floor((right + left) / 2)].style.backgroundColor=black;
+      bars[Math.floor((right + left) / 2)].style.backgroundColor = black;
       await sleep(animationspeed);
       var temph = bars[i].style.height;
       bars[i].style.height = bars[j].style.height;
       bars[j].style.height = temph;
 
       bars[j].style.backgroundColor = blue;
-      bars[Math.floor((right + left) / 2)].style.backgroundColor=black;
+      bars[Math.floor((right + left) / 2)].style.backgroundColor = black;
       bars[i].style.backgroundColor = blue;
-      bars[Math.floor((right + left) / 2)].style.backgroundColor=black;
+      bars[Math.floor((right + left) / 2)].style.backgroundColor = black;
 
-      
       var temp = arr[i];
       arr[i] = arr[j];
       arr[j] = temp;
@@ -538,7 +541,7 @@ async function partition( left, right) {
       j--;
     }
   }
-  bars[Math.floor((right + left) / 2)].style.backgroundColor=blue;
+  bars[Math.floor((right + left) / 2)].style.backgroundColor = blue;
   return i;
 }
 
@@ -547,23 +550,22 @@ async function quickSort(left, right) {
   var index;
 
   if (arr.length > 1) {
-    index = await partition( left, right); //index returned from partition
+    index = await partition(left, right); //index returned from partition
     if (left < index - 1) {
       //more elements on the left side of the pivot
-      await quickSort( left, index - 1);
+      await quickSort(left, index - 1);
     }
     if (index < right) {
       //more elements on the right side of the pivot
-      await quickSort( index, right);
+      await quickSort(index, right);
     }
-    bars[Math.floor((right + left) / 2)].style.backgroundColor=blue;
+    bars[Math.floor((right + left) / 2)].style.backgroundColor = blue;
   }
   return;
 }
 
-async function doQuickSort()
-{
-  await quickSort(0,arr.length -1);
+async function doQuickSort() {
+  await quickSort(0, arr.length - 1);
   console.log(arr);
   await falshGreen();
 }
