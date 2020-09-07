@@ -480,21 +480,20 @@ async function partition(left, right) {
   var bars = Array.from(document.getElementById('addbarshere').children);
 
   animationspeed = await getAnimationSpeed();
-
+  await sleep(animationspeed);
   var pivot = arr[Math.floor((right + left) / 2)], //middle element
     i = left, //left pointer
     j = right; //right pointer
   // console.log(pivot);
   // bars[j].style.backgroundColor=yellow;
   while (i <= j) {
+    animationspeed = await getAnimationSpeed();
     await sleep(animationspeed);
     bars[Math.floor((right + left) / 2)].style.backgroundColor = black;
 
-    animationspeed = await getAnimationSpeed();
-
     while (arr[i] < pivot) {
       animationspeed = await getAnimationSpeed();
-
+      await sleep(animationspeed);
       bars[j].style.backgroundColor = yellow;
       bars[i].style.backgroundColor = yellow;
       await sleep(animationspeed);
@@ -502,10 +501,9 @@ async function partition(left, right) {
 
       i++;
     }
-
     bars[i].style.backgroundColor = blue;
-
     while (arr[j] > pivot) {
+      await sleep(animationspeed);
       animationspeed = getAnimationSpeed();
       bars[i].style.backgroundColor = yellow;
       bars[j].style.backgroundColor = yellow;
@@ -514,25 +512,18 @@ async function partition(left, right) {
 
       j--;
     }
-
     bars[j].style.backgroundColor = blue;
-    bars[Math.floor((right + left) / 2)].style.backgroundColor = black;
-
     if (i <= j) {
-      bars[Math.floor((right + left) / 2)].style.backgroundColor = black;
-      bars[j].style.backgroundColor = red;
-      bars[Math.floor((right + left) / 2)].style.backgroundColor = black;
-      bars[i].style.backgroundColor = red;
-      bars[Math.floor((right + left) / 2)].style.backgroundColor = black;
       await sleep(animationspeed);
+      bars[j].style.backgroundColor = red;
+      bars[i].style.backgroundColor = red;
+      await sleep(animationspeed);
+
       var temph = bars[i].style.height;
       bars[i].style.height = bars[j].style.height;
       bars[j].style.height = temph;
-
       bars[j].style.backgroundColor = blue;
-      bars[Math.floor((right + left) / 2)].style.backgroundColor = black;
       bars[i].style.backgroundColor = blue;
-      bars[Math.floor((right + left) / 2)].style.backgroundColor = black;
 
       var temp = arr[i];
       arr[i] = arr[j];
