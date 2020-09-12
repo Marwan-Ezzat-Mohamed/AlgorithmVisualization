@@ -1,92 +1,108 @@
 <!DOCTYPE html>
 <html>
-   <link
+  <head>
+    <title>Page Title</title>
+    |
+    <link
       rel="stylesheet"
       href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
-      />
-   <!-- jQuery library -->
-   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-   <!-- Latest compiled JavaScript -->
-   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-   <link rel="stylesheet" href="css.css" />
-   <head>
-      <title>Page Title</title>
-   </head>
-   <body>
-      <div class="inputs">
-         <input
+    />
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="css.css" />
+    <script src="script.js" defer></script>
+  </head>
+
+  <body>
+    <nav class="buttons">
+      <button
+        id="generate_array"
+        class="btn btn-primary"
+        onclick="generateArray()"
+      >
+        Generate Array
+      </button>
+      <button
+        id="binary_search"
+        class="btn btn-primary"
+        onclick="doBinarySearch()"
+      >
+        Binary search
+      </button>
+      <button id="" class="btn btn-primary" onclick="doBasicSort()">
+        Basic Sort
+      </button>
+      <button id="" class="btn btn-primary" onclick="dolinearSearch()">
+        linear Search
+      </button>
+
+      <button
+        id="generate_array"
+        class="btn btn-primary"
+        onclick="doMergeSort()"
+      >
+        Merge Sort
+      </button>
+
+      <button
+        id="generate_array"
+        class="btn btn-primary"
+        onclick="doBubbleSort()"
+      >
+        Bubble sort
+      </button>
+
+      <button
+        id="generate_array"
+        class="btn btn-primary"
+        onclick="doQuickSort()"
+      >
+        Quick sort
+      </button>
+    </nav>
+    <section class="section">
+      <aside>
+        <div class="inputs" , id="inputs2">
+          <p class="text">Array Size</p>
+          <input
             type="number"
             id="arraysize"
             class="ipt"
-            placeholder="array size"
-            />
-         <input
+            placeholder="Array Size"
+          />
+          <button
+            id="generate_array2"
+            class="btn btn-primary"
+            onclick="generateArray()"
+          >
+            Generate
+          </button>
+        </div>
+        <div class="inputs">
+          <p class="text">Target Number</p>
+          <input
             type="number"
             id="searchNumber"
             class="ipt"
             placeholder="number to search for"
-            />
-      </div>
-      <div class="slidecontainer">
-         <label class="labelforslider">Animation Speed</label>
-         <input
+          />
+        </div>
+        <div class="slidecontainer">
+          <p class="text">Array Size</p>
+          <label class="labelforslider"></label>
+          <input
             type="range"
             min="0"
             max="1000"
             value="500"
             class="slider"
             id="animation_speed"
-            />
-      </div>
-      <div class="buttons">
-         <button
-            id="generate_array"
-            class="btn btn-primary"
-            onclick="generateArray()"
-            >
-         Generate Array
-         </button>
-         <button
-            id="binary_search"
-            class="btn btn-primary"
-            onclick="doBinarySearch()"
-            >
-         Binary search
-         </button>
-         <button id="" class="btn btn-primary" onclick="doBasicSort()">
-         Basic Sort
-         </button>
-         <button id="" class="btn btn-primary" onclick="dolinearSearch()">
-         linear Search
-         </button>
-
-         <button
-         id="generate_array"
-         class="btn btn-primary"
-         onclick="doMergeSort()"
-         >
-         Merge Sort
-         </button>
-
-         <button
-         id="generate_array"
-         class="btn btn-primary"
-         onclick="doBubbleSort()"
-         >
-         Bubble sort
-         </button>
-
-         <button
-         id="generate_array"
-         class="btn btn-primary"
-         onclick="doQuickSort()"
-         >
-         Quick sort
-         </button>
-
-      </div>
-      <div calss="addbarshere" id="addbarshere"></div>
-      </div>
-   </body>
-   <script src="script.js"></script>
+          />
+        </div>
+      </aside>
+      <div class="addbarshere" id="addbarshere"></div>
+    </section>
+  </body>
 </html>

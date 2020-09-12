@@ -532,6 +532,7 @@ async function partition(left, right) {
       j--;
     }
   }
+  await sleep(animationspeed);
   bars[Math.floor((right + left) / 2)].style.backgroundColor = blue;
   return i;
 }

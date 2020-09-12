@@ -1,17 +1,28 @@
+* {
+  box-sizing: border-box;
+}
 body {
   padding: 32px 64px;
   color: #2f363f;
-  background-color:#292F36;
+  background-color: #292f36;
 }
+
+.text {
+  color: aliceblue;
+  text-align: center;
+  margin: auto;
+  width: 100%;
+  align-content: left;
+}
+
 .bar {
   width: 15px;
   height: 200px;
   display: inline-block;
   margin-right: 3px;
   margin-top: 100px;
-  background-color: #F7ECE1;
+  background-color: #f7ece1;
   border-radius: 30000px;
-
 }
 .addbarshere {
   margin-top: 10px;
@@ -49,24 +60,21 @@ body {
   box-sizing: border-box;
   outline: none;
   color: #2f363f;
-  margin: 0 12px;
+  margin: 0;
 }
-.inputs{
+.inputs {
   display: block;
-  float: left;
-  
+  width: 100%;
 }
-.labelforslider{
-  color: #F7ECE1;
+.labelforslider {
+  color: #f7ece1;
   text-align: center;
-  margin-left: 33%;
+  margin-left: 30%;
 }
 /* //slider */
 .slidecontainer {
-  width: 33%; /* Width of the outside container */
+  width: 100%; /* Width of the outside container */
   display: inline-block;
-  
-  
 }
 
 /* The slider itself */
@@ -74,12 +82,12 @@ body {
   -webkit-appearance: none;
   width: 100%;
   height: 15px;
-  border-radius: 5px;  
+  border-radius: 5px;
   background: #d3d3d3;
   outline: none;
   opacity: 0.7;
-  -webkit-transition: .2s;
-  transition: opacity .2s;
+  -webkit-transition: 0.2s;
+  transition: opacity 0.2s;
 }
 
 /* Mouse-over effects */
@@ -93,8 +101,8 @@ body {
   appearance: none;
   width: 25px;
   height: 25px;
-  border-radius: 50%; 
-  background: #4CAF50;
+  border-radius: 50%;
+  background: #4caf50;
   cursor: pointer;
 }
 
@@ -102,7 +110,7 @@ body {
   width: 25px;
   height: 25px;
   border-radius: 50%;
-  background: #4CAF50;
+  background: #4caf50;
   cursor: pointer;
 }
 
@@ -200,4 +208,88 @@ body {
     bottom: 60px;
     opacity: 0;
   }
+}
+aside {
+  display: flex;
+  flex-flow: column;
+  flex-direction: column;
+  justify-content: left;
+  margin-right: 50px;
+}
+aside div {
+  margin-top: 20px;
+}
+nav {
+  display: flex;
+  justify-content: center;
+  flex-flow: row;
+  flex-direction: row;
+  margin: auto;
+}
+nav button {
+  margin-left: 20px;
+}
+
+section {
+  display: flex;
+  justify-content: left;
+  flex-flow: row;
+  flex-direction: row;
+}
+
+#slidecontainer {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  flex-flow: column;
+  flex-direction: column;
+}
+.slidecontainer {
+  margin-top: 35px;
+}
+header {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  flex-flow: column;
+  flex-direction: column;
+}
+#addbarshere {
+  margin: auto;
+}
+
+#inputs2 {
+  display: flex;
+  flex-flow: row;
+}
+
+#arraysize {
+  margin: 0;
+  border: 0;
+  border-radius: 1000px 0 0 1000px;
+  color: black;
+  font-family: monospace;
+  padding: 14px;
+  font-size: 1rem;
+  text-align: left;
+  font-weight: bolder;
+  width: 70%;
+}
+
+#generate_array2 {
+  margin: 0;
+  border: 0;
+  border-radius: 0 1000px 1000px 0;
+  background-color: rgb(109, 171, 243);
+  color: white;
+  font-family: monospace;
+  padding: 14px;
+  padding-right: 30px;
+  font-size: 1rem;
+  text-align: center;
+  font-weight: bolder;
+  width: 30%;
+}
+input::placeholder {
+  color: grey;
 }
