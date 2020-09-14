@@ -18,13 +18,6 @@
   <body>
     <nav class="buttons">
       <button
-        id="generate_array"
-        class="btn btn-primary"
-        onclick="generateArray()"
-      >
-        Generate Array
-      </button>
-      <button
         id="binary_search"
         class="btn btn-primary"
         onclick="doBinarySearch()"
@@ -64,7 +57,7 @@
     </nav>
     <section class="section">
       <aside>
-        <div class="inputs" , id="inputs2">
+        <div class="inputs" id="inputs2">
           <p class="text">Array Size</p>
           <input
             type="number"
@@ -80,7 +73,7 @@
             Generate
           </button>
         </div>
-        <div class="inputs">
+        <div class="inputs" id="inputs2">
           <p class="text">Target Number</p>
           <input
             type="number"
@@ -89,9 +82,8 @@
             placeholder="number to search for"
           />
         </div>
-        <div class="slidecontainer">
-          <p class="text">Array Size</p>
-          <label class="labelforslider"></label>
+        <div class="inputs" id="inputs2">
+          <p class="text">Animation Speed</p>
           <input
             type="range"
             min="0"
