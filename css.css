@@ -17,9 +17,7 @@ body {
   border-radius: 30000px;
 }
 .addbarshere {
-  margin-top: -65px;
   min-height: 600px;
-  padding: 32px;
 }
 
 .btn:hover {
@@ -219,6 +217,7 @@ aside {
   flex-direction: column;
   justify-content: left;
   margin-right: 50px;
+  margin-top: 40px;
 }
 aside div {
   margin-top: 20px;
@@ -260,7 +259,7 @@ header {
 }
 #addbarshere {
   margin: auto;
-  margin-top: -65px;
+  margin-top: 0px;
 }
 
 #inputs2 {
