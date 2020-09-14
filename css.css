@@ -234,7 +234,8 @@ nav button {
 }
 
 section {
-  display: flex;
+  height: 100%;
+  display: inline-block;
   justify-content: left;
   flex-flow: row;
   flex-direction: row;
