@@ -8,6 +8,7 @@ const black = '#423E3B';
 //mint green A2FAA3
 
 //general functions
+
 function arraySizeHandler() {
   var ArraySize = Number(document.getElementById('arraysize').value);
   if (ArraySize > 100) {
@@ -45,6 +46,20 @@ async function falshGreen() {
   await sleep(1000);
   for (var i = 0; i < bars.length; i++) {
     bars[i].style.backgroundColor = blue;
+  }
+}
+
+async function makeGreen(low, high) {
+  var bars = Array.from(document.getElementById('addbarshere').children);
+  for (var x = low; x < high; x++) {
+    bars[x].style.backgroundColor = green;
+  }
+}
+
+async function resetColor(low, high) {
+  var bars = Array.from(document.getElementById('addbarshere').children);
+  for (var x = low; x < high; x++) {
+    bars[x].style.backgroundColor = blue;
   }
 }
 
@@ -325,15 +340,16 @@ async function merge(a, low, m, high) {
   for (i = 0; i < len; i++) {
     temp[i] = a[low + i];
   }
-
   //the current sub array bieng sorted animations
   for (var x = low; x < high; x++) {
     bars[x].style.backgroundColor = red;
   }
   await sleep(animationspeed);
-  for (var x = low; x < high; x++) {
+  for (var x = low + 1; x < high; x++) {
     bars[x].style.backgroundColor = blue;
   }
+  bars[low].style.backgroundColor = black;
+  bars[high - 1].style.backgroundColor = black;
   ///////////
   i = 0;
   j = m;
@@ -348,16 +364,14 @@ async function merge(a, low, m, high) {
         if (bars[x].style.height == temp[i] + 'px') {
           idx = x;
           break;
-        } else {
-          bars[x].style.backgroundColor = yellow;
-          await sleep(animationspeed);
-          bars[x].style.backgroundColor = blue;
         }
       }
 
       //the current value bieng compared animations
-      bars[idx].style.backgroundColor = yellow;
-      bars[k].style.backgroundColor = yellow;
+
+      if (idx != low && idx != high - 1)
+        bars[idx].style.backgroundColor = yellow;
+      if (k != low && k != high - 1) bars[k].style.backgroundColor = yellow;
 
       var temph = bars[k].style.height;
       bars[k].style.height = temp[i] + 'px';
@@ -367,6 +381,9 @@ async function merge(a, low, m, high) {
 
       bars[k].style.backgroundColor = blue;
       bars[idx].style.backgroundColor = blue;
+
+      bars[low].style.backgroundColor = black;
+      bars[high - 1].style.backgroundColor = black;
       ///////////
       a[k++] = temp[i++];
     } else {
@@ -382,6 +399,8 @@ async function merge(a, low, m, high) {
 
       bars[k].style.backgroundColor = blue;
       bars[j].style.backgroundColor = blue;
+      bars[low].style.backgroundColor = black;
+      bars[high - 1].style.backgroundColor = black;
       ///////////
       a[k++] = a[j++];
     }
@@ -394,10 +413,6 @@ async function merge(a, low, m, high) {
       if (bars[x].style.height == temp[i] + 'px') {
         index = x;
         break;
-      } else {
-        bars[x].style.backgroundColor = yellow;
-        await sleep(animationspeed);
-        bars[x].style.backgroundColor = blue;
       }
     }
 
@@ -413,14 +428,23 @@ async function merge(a, low, m, high) {
 
     bars[k].style.backgroundColor = blue;
     bars[index].style.backgroundColor = blue;
+
+    bars[low].style.backgroundColor = black;
+    bars[high - 1].style.backgroundColor = black;
     ///////////
     a[k++] = temp[i++];
   }
+  bars[low].style.backgroundColor = blue;
+  bars[high - 1].style.backgroundColor = blue;
+
+  await makeGreen(low, high);
+  await sleep(animationspeed);
+  await resetColor(low, high);
 }
 
 async function mergesort(a, low, high) {
   if (high - low > 1) {
-    var m = low + ((high - low) >> 1);
+    var m = Math.round((low + high) / 2);
     await mergesort(a, low, m);
     await mergesort(a, m, high);
     await merge(a, low, m, high);
