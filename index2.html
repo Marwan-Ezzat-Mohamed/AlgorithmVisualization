@@ -1,0 +1,168 @@
+<DOCTYPE html>
+  <html lang="en">
+    <head>
+      <meta charset="UTF-8" />
+      <title>Using the Style Attribute</title>
+      <link rel="stylesheet" href="style.css" />
+      <script src="adminpage.js" defer></script>
+      <script src="script.js" defer></script>
+    </head>
+    <body class="dark-mode">
+      <header
+        class="page-header"
+        id="header"
+        style="color: rgb(255, 255, 255); background: rgb(51, 51, 51)"
+      >
+        <nav>
+          <a href="#0">
+            <img class="logo" src="" alt="" />
+          </a>
+          <button
+            class="toggle-mob-menu"
+            aria-expanded="false"
+            aria-label="open menu"
+          >
+            <img
+              src="https://www.flaticon.com/svg/static/icons/svg/149/149176.svg"
+              alt=""
+              width="18"
+              height="14"
+            />
+          </button>
+          <ul class="admin-menu">
+            <li class="menu-heading"></li>
+            <li>
+              <a>
+                <img
+                  src="https://www.flaticon.com/svg/static/icons/svg/2948/2948025.svg"
+                  alt=""
+                  width="18"
+                  height="14"
+                />
+                <span onclick="generateArray()"> Generate array</span>
+              </a>
+            </li>
+            <li>
+              <a>
+                <img
+                  src="https://www.flaticon.com/svg/static/icons/svg/3069/3069417.svg"
+                  alt=""
+                  width="18"
+                  height="14"
+                />
+                <input
+                  type="number"
+                  id="arraysize"
+                  class="ipt"
+                  placeholder="Array Size"
+                />
+              </a>
+            </li>
+            <li>
+              <a>
+                <img
+                  src="https://www.flaticon.com/svg/static/icons/svg/615/615075.svg"
+                  alt=""
+                  width="18"
+                  height="14"
+                />
+                <span>Customers</span>
+              </a>
+            </li>
+            <li>
+              <a href="#0">
+                <img
+                  src="https://www.flaticon.com/svg/static/icons/svg/2878/2878786.svg"
+                  alt=""
+                  width="18"
+                  height="14"
+                />
+                <span>Complaints</span>
+              </a>
+            </li>
+            <li>
+              <a href="#0">
+                <img
+                  src="https://www.flaticon.com/svg/static/icons/svg/2928/2928999.svg"
+                  alt=""
+                  width="18"
+                  height="14"
+                />
+                <span>Sales Report</span>
+              </a>
+            </li>
+            <li>
+              <a href="#0">
+                <img
+                  src="https://www.flaticon.com/svg/static/icons/svg/1689/1689164.svg"
+                  alt=""
+                  width="18"
+                  height="14"
+                />
+                <span>Update Menu</span>
+              </a>
+            </li>
+            <li>
+              <button
+                class="collapse-btn"
+                aria-expanded="true"
+                aria-label="collapse menu"
+                onclick="logOut()"
+              >
+                <span>Logout</span>
+              </button>
+            </li>
+          </ul>
+        </nav>
+      </header>
+      <nav class="buttons">
+        <div class="buttons-container">
+          <button
+            id="binary_search"
+            class="btn btn-primary"
+            onclick="doBinarySearch()"
+          >
+            Binary search
+          </button>
+          <button id="" class="btn btn-primary" onclick="doBasicSort()">
+            Basic Sort
+          </button>
+          <button id="" class="btn btn-primary" onclick="dolinearSearch()">
+            linear Search
+          </button>
+
+          <button
+            id="generate_array"
+            class="btn btn-primary"
+            onclick="doMergeSort()"
+          >
+            Merge Sort
+          </button>
+
+          <button
+            id="generate_array"
+            class="btn btn-primary"
+            onclick="doBubbleSort()"
+          >
+            Bubble sort
+          </button>
+
+          <button
+            id="generate_array"
+            class="btn btn-primary"
+            onclick="doQuickSort()"
+          >
+            Quick sort
+          </button>
+        </div>
+      </nav>
+      <section class="page-content" id="content">
+        <section class="grid">
+          <article>
+            <div class="addbarshere" id="addbarshere"></div>
+          </article>
+        </section>
+      </section>
+    </body>
+  </html>
+</DOCTYPE>
