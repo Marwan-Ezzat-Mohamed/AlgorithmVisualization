@@ -5,9 +5,16 @@ const yellow = '#F5F749';
 const red = '#D95D39';
 const green = '#5BBA6F';
 const black = '#423E3B';
+
 //mint green A2FAA3
 
 //general functions
+
+function removeSpan() {
+  var elem = document.getElementById('stopId');
+  if (elem != null) elem.parentNode.removeChild(elem);
+  else return;
+}
 
 function arraySizeHandler() {
   var ArraySize = Number(document.getElementById('arraysize').value);
@@ -228,6 +235,10 @@ function animationArrayForBasicSort(Array) {
 }
 
 async function doBasicSort() {
+  removeSpan();
+  var elem = document.getElementById('my-stopwatch');
+  var timer = new Stopwatch(elem, { delay: 10 });
+  timer.start();
   var animationArray = animationArrayForBasicSort(arr);
   var previous;
   var bars = Array.from(document.getElementById('addbarshere').children);
@@ -267,6 +278,7 @@ async function doBasicSort() {
     if (Number.isInteger(previous.i))
       bars[previous.i].style.backgroundColor = blue;
   }
+  timer.stop();
   falshGreen();
 }
 function animationArrayForLinearSearch(Array) {
@@ -452,7 +464,12 @@ async function mergesort(a, low, high) {
 }
 
 async function doMergeSort() {
+  removeSpan();
+  var elem = document.getElementById('my-stopwatch');
+  var timer = new Stopwatch(elem, { delay: 10 });
+  timer.start();
   await mergesort(arr, 0, arr.length);
+  timer.stop();
   await falshGreen();
 }
 
@@ -581,7 +598,11 @@ async function quickSort(left, right) {
 }
 
 async function doQuickSort() {
+  removeSpan();
+  var elem = document.getElementById('my-stopwatch');
+  var timer = new Stopwatch(elem, { delay: 10 });
+  timer.start();
   await quickSort(0, arr.length - 1);
-  console.log(arr);
+  timer.stop();
   await falshGreen();
 }

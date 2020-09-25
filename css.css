@@ -301,3 +301,14 @@ header {
 input::placeholder {
   color: grey;
 }
+.stopwatchSpan {
+  color: #4caf50;
+  background-color: red;
+
+  font-size: xx-large;
+}
+.stopwatch {
+  width: 100px;
+  height: 100px;
+  font-size: xx-large;
+}
