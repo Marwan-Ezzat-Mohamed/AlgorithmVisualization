@@ -53,7 +53,7 @@ body {
   margin: 0;
 }
 .inputs {
-  display: block;
+  display: flex;
   width: 100%;
   justify-content: left;
 }
@@ -212,6 +212,7 @@ body {
   }
 }
 aside {
+  width: 25%;
   display: flex;
   flex-flow: column;
   flex-direction: column;
@@ -311,4 +312,8 @@ input::placeholder {
   width: 100px;
   height: 100px;
   font-size: xx-large;
+}
+
+aside {
+  margin-right: 0px;
 }
