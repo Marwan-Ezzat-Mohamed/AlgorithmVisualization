@@ -17,47 +17,7 @@
   </head>
 
   <body>
-    <nav class="buttons">
-      <button
-        id="binary_search"
-        class="btn btn-primary"
-        onclick="doBinarySearch()"
-      >
-        Binary search
-      </button>
-      <button id="" class="btn btn-primary" onclick="doBasicSort()">
-        Basic Sort
-      </button>
-      <button id="" class="btn btn-primary" onclick="dolinearSearch()">
-        linear Search
-      </button>
-
-      <button
-        id="generate_array"
-        class="btn btn-primary"
-        onclick="doMergeSort()"
-      >
-        Merge Sort
-      </button>
-
-      <button
-        id="generate_array"
-        class="btn btn-primary"
-        onclick="doBubbleSort()"
-      >
-        Bubble sort
-      </button>
-
-      <button
-        id="generate_array"
-        class="btn btn-primary"
-        onclick="doQuickSort()"
-      >
-        Quick sort
-      </button>
-    </nav>
-
-    <aside>
+    <div class="side">
       <div class="inputs" id="inputs2">
         <p class="text">Array Size</p>
         <input
@@ -94,9 +54,59 @@
           id="animation_speed"
         />
       </div>
-    </aside>
-    <div class="addbarshere" id="addbarshere"></div>
+    </div>
+
+    <div class="buttons">
+      <div class="sub-buttons">
+        <button
+          id="binary_search"
+          class="btn btn-primary"
+          onclick="doBinarySearch()"
+        >
+          Binary search
+        </button>
+        <button id="" class="btn btn-primary" onclick="doBasicSort()">
+          Basic Sort
+        </button>
+        <button id="" class="btn btn-primary" onclick="dolinearSearch()">
+          linear Search
+        </button>
+
+        <button
+          id="generate_array"
+          class="btn btn-primary"
+          onclick="doMergeSort()"
+        >
+          Merge Sort
+        </button>
+
+        <button
+          id="generate_array"
+          class="btn btn-primary"
+          onclick="doBubbleSort()"
+        >
+          Bubble sort
+        </button>
+
+        <button
+          id="generate_array"
+          class="btn btn-primary"
+          onclick="doQuickSort()"
+        >
+          Quick sort
+        </button>
+      </div>
+      <div class="addbarshere" id="addbarshere"></div>
+    </div>
 
     <div class="stopwatch" id="my-stopwatch">hello</div>
+
+    <Graph
+      indexType="custom"
+      height="400"
+      width="400"
+      nodes="{[{label:1,center:{x:208.8,y:37.9}},{label:2,center:{x:157.9,y:102}},{label:3,center:{x:255.4,y:115}},{label:4,center:{x:289.2,y:167}},{label:5,center:{x:119.9,y:155.1}}]}"
+      edges="{[{source:0,target:1},{source:0,target:2},{source:2,target:3},{source:1,target:4}]}"
+    />
   </body>
 </html>

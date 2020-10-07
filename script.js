@@ -87,7 +87,7 @@ function generateArray() {
   inputArraySize = arraySizeHandler();
 
   for (var i = 0; i < inputArraySize; ++i) {
-    var randomNumber = getRandomInt(99) + 6;
+    var randomNumber = getRandomInt(200) + 1;
     arr.push(randomNumber);
     var addhere = document.getElementById('addbarshere');
     var newbar = document.createElement('div');

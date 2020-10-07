@@ -7,17 +7,44 @@ body {
   background-color: #292f36;
 }
 
+.side {
+  margin-top: 10%;
+  margin-right: 1%;
+  width: 30%;
+  height: 100vh;
+  /* background-color: blue; */
+  float: left;
+}
+.buttons {
+  width: 69%;
+  height: 100vh;
+  align-items: center;
+  /* background-color: red; */
+  display: flex;
+  flex-direction: column;
+}
+.sub-buttons {
+  margin: 0, 0, 0, 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
 .bar {
   width: 15px;
   height: 200px;
-  display: inline-block;
+  justify-content: center;
   margin-right: 3px;
   margin-top: 100px;
   background-color: #f7ece1;
+  display: flex;
   border-radius: 30000px;
 }
 .addbarshere {
-  min-height: 600px;
+  display: flex;
+  transform: rotate(180deg);
+  height: 50%;
+  width: 100%;
+  justify-content: center;
 }
 
 .btn:hover {
@@ -52,11 +79,7 @@ body {
   color: #2f363f;
   margin: 0;
 }
-.inputs {
-  display: flex;
-  width: 100%;
-  justify-content: left;
-}
+
 .labelforslider {
   color: #f7ece1;
   text-align: center;
@@ -211,35 +234,6 @@ body {
     opacity: 0;
   }
 }
-aside {
-  width: 25%;
-  display: flex;
-  flex-flow: column;
-  flex-direction: column;
-  justify-content: left;
-  margin-right: 50px;
-  margin-top: 40px;
-}
-aside div {
-  margin-top: 20px;
-}
-nav {
-  display: flex;
-  justify-content: center;
-  flex-flow: row;
-  flex-direction: row;
-  margin: auto;
-}
-nav button {
-  margin-left: 20px;
-}
-
-section {
-  display: flex;
-  justify-content: left;
-  flex-flow: row;
-  flex-direction: row;
-}
 
 #slidecontainer {
   display: flex;
@@ -250,17 +244,6 @@ section {
 }
 .slidecontainer {
   margin-top: 35px;
-}
-header {
-  display: flex;
-  justify-content: center;
-  align-content: center;
-  flex-flow: column;
-  flex-direction: column;
-}
-#addbarshere {
-  margin: auto;
-  margin-top: 0px;
 }
 
 #inputs2 {
@@ -312,8 +295,4 @@ input::placeholder {
   width: 100px;
   height: 100px;
   font-size: xx-large;
-}
-
-aside {
-  margin-right: 0px;
 }
