@@ -20,14 +20,14 @@ function arraySizeHandler() {
   var ArraySize = Number(document.getElementById('arraysize').value);
   if (ArraySize > 100) {
     alert('Array size must be less than 100');
-    return;
+    return -1;
   }
   return ArraySize;
 }
-function swap(arr, first_Index, second_Index) {
-  var temp = arr[first_Index];
-  arr[first_Index] = arr[second_Index];
-  arr[second_Index] = temp;
+function swap(Array, first_Index, second_Index) {
+  var temp = Array[first_Index];
+  Array[first_Index] = Array[second_Index];
+  Array[second_Index] = temp;
 }
 
 async function getAnimationSpeed() {
@@ -81,13 +81,13 @@ function resetArray() {
   }
 }
 function generateArray() {
+  inputArraySize = arraySizeHandler();
+  if (inputArraySize == -1) return;
   resetArray();
   arr.length = 0;
 
-  inputArraySize = arraySizeHandler();
-
   for (var i = 0; i < inputArraySize; ++i) {
-    var randomNumber = getRandomInt(200) + 1;
+    var randomNumber = getRandomInt(200) + 7;
     arr.push(randomNumber);
     var addhere = document.getElementById('addbarshere');
     var newbar = document.createElement('div');

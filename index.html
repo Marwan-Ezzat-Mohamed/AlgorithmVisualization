@@ -19,22 +19,24 @@
   <body>
     <div class="side">
       <div class="inputs" id="inputs2">
-        <p class="text">Array Size</p>
+        <div class="side-icons">
+          <img src="./images/array size.svg" />
+        </div>
+        <div class="text">Array Size</div>
         <input
           type="number"
           id="arraysize"
           class="ipt"
           placeholder="Array Size"
         />
-        <button
-          id="generate_array2"
-          class="btn btn-primary"
-          onclick="generateArray()"
-        >
+        <button id="generate_array2" class="buttons" onclick="generateArray()">
           Generate
         </button>
       </div>
       <div class="inputs" id="inputs2">
+        <div class="side-icons">
+          <img src="./images/target number.svg" />
+        </div>
         <p class="text">Target Number</p>
         <input
           type="number"
@@ -44,6 +46,9 @@
         />
       </div>
       <div class="inputs" id="inputs2">
+        <div class="side-icons">
+          <img src="./images/animation speed.svg" />
+        </div>
         <p class="text">Animation Speed</p>
         <input
           type="range"
@@ -56,47 +61,39 @@
       </div>
     </div>
 
-    <div class="buttons">
+    <div class="main-container">
       <div class="sub-buttons">
         <button
           id="binary_search"
-          class="btn btn-primary"
+          class="buttons"
           onclick="doBinarySearch()"
-        >
-          Binary search
-        </button>
-        <button id="" class="btn btn-primary" onclick="doBasicSort()">
-          Basic Sort
-        </button>
-        <button id="" class="btn btn-primary" onclick="dolinearSearch()">
-          linear Search
-        </button>
-
+        ></button>
         <button
-          id="generate_array"
-          class="btn btn-primary"
-          onclick="doMergeSort()"
-        >
+          id="linear_search"
+          class="buttons"
+          onclick="dolinearSearch()"
+        ></button>
+        <button
+          id="basic_sort"
+          class="buttons"
+          onclick="doBasicSort()"
+        ></button>
+
+        <button id="generate_array" class="buttons" onclick="doMergeSort()">
           Merge Sort
         </button>
 
-        <button
-          id="generate_array"
-          class="btn btn-primary"
-          onclick="doBubbleSort()"
-        >
+        <button id="generate_array" class="buttons" onclick="doBubbleSort()">
           Bubble sort
         </button>
 
-        <button
-          id="generate_array"
-          class="btn btn-primary"
-          onclick="doQuickSort()"
-        >
+        <button id="generate_array" class="buttons" onclick="doQuickSort()">
           Quick sort
         </button>
       </div>
-      <div class="addbarshere" id="addbarshere"></div>
+      <div class="bars-container">
+        <div class="addbarshere" id="addbarshere"></div>
+      </div>
     </div>
 
     <div class="stopwatch" id="my-stopwatch">hello</div>
