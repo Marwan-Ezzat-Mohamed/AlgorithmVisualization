@@ -4,7 +4,7 @@ const blue = '#F7ECE1';
 const yellow = '#F5F749';
 const red = '#D95D39';
 const green = '#5BBA6F';
-const black = '#423E3B';
+const black = '#1a66ff';
 
 //mint green A2FAA3
 
@@ -517,7 +517,7 @@ async function doBubbleSort() {
 //quick sort
 // logic code from : https://www.guru99.com/quicksort-in-javascript.html
 
-async function partition(left, right) {
+async function partition(left, right, mid) {
   var bars = Array.from(document.getElementById('addbarshere').children);
 
   animationspeed = await getAnimationSpeed();
@@ -527,11 +527,14 @@ async function partition(left, right) {
     j = right; //right pointer
   // console.log(pivot);
   // bars[j].style.backgroundColor=yellow;
+  let tempJ,
+    tempI,
+    needed = 0;
   while (i <= j) {
     animationspeed = await getAnimationSpeed();
-    await sleep(animationspeed);
-    bars[Math.floor((right + left) / 2)].style.backgroundColor = black;
+    bars[mid].style.backgroundColor = black;
 
+    await sleep(animationspeed);
     while (arr[i] < pivot) {
       animationspeed = await getAnimationSpeed();
       await sleep(animationspeed);
@@ -542,10 +545,11 @@ async function partition(left, right) {
 
       i++;
     }
+    await sleep(animationspeed);
     bars[i].style.backgroundColor = blue;
     while (arr[j] > pivot) {
-      await sleep(animationspeed);
       animationspeed = getAnimationSpeed();
+      await sleep(animationspeed);
       bars[i].style.backgroundColor = yellow;
       bars[j].style.backgroundColor = yellow;
       await sleep(animationspeed);
@@ -553,8 +557,24 @@ async function partition(left, right) {
 
       j--;
     }
+    await sleep(animationspeed);
     bars[j].style.backgroundColor = blue;
     if (i <= j) {
+      if (j == mid && i < j) {
+        await sleep(animationspeed);
+        bars[j].style.backgroundColor = blue;
+        bars[i].style.backgroundColor = blue;
+        await sleep(animationspeed);
+        var temp = arr[i];
+        arr[i] = arr[j];
+        arr[j] = temp;
+        needed = 1;
+        tempI = i;
+        tempJ = j;
+        i++;
+        j--;
+        continue;
+      }
       await sleep(animationspeed);
       bars[j].style.backgroundColor = red;
       bars[i].style.backgroundColor = red;
@@ -572,9 +592,26 @@ async function partition(left, right) {
       i++;
       j--;
     }
+    await sleep(animationspeed);
+  }
+  if (needed == 1) {
+    await sleep(animationspeed);
+    bars[tempJ].style.backgroundColor = red;
+    bars[tempI].style.backgroundColor = red;
+
+    var temph = bars[tempI].style.height;
+    bars[tempI].style.height = bars[tempJ].style.height;
+    bars[tempJ].style.height = temph;
+    await sleep(animationspeed);
+    bars[tempJ].style.backgroundColor = blue;
+    bars[tempI].style.backgroundColor = blue;
+
+    var temp = arr[tempJ];
+    arr[tempI] = arr[tempJ];
+    arr[tempJ] = temp;
   }
   await sleep(animationspeed);
-  bars[Math.floor((right + left) / 2)].style.backgroundColor = blue;
+  bars[mid].style.backgroundColor = blue;
   return i;
 }
 
@@ -583,7 +620,9 @@ async function quickSort(left, right) {
   var index;
 
   if (arr.length > 1) {
-    index = await partition(left, right); //index returned from partition
+    let mid = Math.floor((right + left) / 2);
+    console.log(mid);
+    index = await partition(left, right, mid); //index returned from partition
     if (left < index - 1) {
       //more elements on the left side of the pivot
       await quickSort(left, index - 1);

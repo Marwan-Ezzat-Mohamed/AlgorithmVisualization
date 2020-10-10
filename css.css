@@ -1,6 +1,3 @@
-* {
-  box-sizing: border-box;
-}
 body {
   padding: 10px 20px;
   color: #2f363f;
@@ -11,25 +8,19 @@ body {
   margin-top: 10%;
   margin-right: 1%;
   width: 30%;
-  height: 100vh;
+  height: 100%;
   /* background-color: blue; */
   float: left;
 }
 .main-container {
   width: 69%;
-  height: 100vh;
+  height: 100%;
   align-items: center;
   /* background-color: red; */
   display: flex;
   flex-direction: column;
 }
-.sub-buttons {
-  margin: 0, 0, 0, 0;
-  width: 100%;
-  height: 5%;
-  display: flex;
-  justify-content: space-between;
-}
+
 .bar {
   width: 15px;
   justify-content: center;
@@ -47,24 +38,30 @@ body {
 }
 .addbarshere {
   display: flex;
-  margin-top: 50px;
+  margin-top: 12%;
   flex-direction: row-reverse;
   height: 70%;
   transform: rotate(180deg);
   width: 100%;
   justify-content: center;
 }
-
+.sub-buttons {
+  margin: 0, 0, 0, 0;
+  width: 100%;
+  height: 5%;
+  display: flex;
+  justify-content: space-between;
+}
 .buttons {
   border-radius: 1000px;
-  width: 14.4%;
-  height: 95%;
+  width: 16%;
+  height: 40px;
   outline: none;
   border: none;
   transition: all 0.2s ease-in-out;
 }
 .buttons:hover {
-  transform: scale(1.1);
+  transform: scale(1.06);
 }
 
 #binary_search {
@@ -233,100 +230,4 @@ input::placeholder {
   width: 100px;
   height: 100px;
   font-size: xx-large;
-}
-
-@-webkit-keyframes fadein {
-  from {
-    bottom: 0;
-    opacity: 0;
-  }
-  to {
-    bottom: 30px;
-    opacity: 1;
-  }
-}
-
-@keyframes fadein {
-  from {
-    bottom: 0;
-    opacity: 0;
-  }
-  to {
-    bottom: 30px;
-    opacity: 1;
-  }
-}
-
-@-webkit-keyframes expand {
-  from {
-    min-width: 50px;
-  }
-  to {
-    min-width: 350px;
-  }
-}
-
-@keyframes expand {
-  from {
-    min-width: 50px;
-  }
-  to {
-    min-width: 350px;
-  }
-}
-@-webkit-keyframes stay {
-  from {
-    min-width: 350px;
-  }
-  to {
-    min-width: 350px;
-  }
-}
-
-@keyframes stay {
-  from {
-    min-width: 350px;
-  }
-  to {
-    min-width: 350px;
-  }
-}
-@-webkit-keyframes shrink {
-  from {
-    min-width: 350px;
-  }
-  to {
-    min-width: 50px;
-  }
-}
-
-@keyframes shrink {
-  from {
-    min-width: 350px;
-  }
-  to {
-    min-width: 50px;
-  }
-}
-
-@-webkit-keyframes fadeout {
-  from {
-    bottom: 30px;
-    opacity: 1;
-  }
-  to {
-    bottom: 60px;
-    opacity: 0;
-  }
-}
-
-@keyframes fadeout {
-  from {
-    bottom: 30px;
-    opacity: 1;
-  }
-  to {
-    bottom: 60px;
-    opacity: 0;
-  }
 }
