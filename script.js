@@ -522,11 +522,9 @@ async function partition(left, right, mid) {
 
   animationspeed = await getAnimationSpeed();
   await sleep(animationspeed);
-  var pivot = arr[Math.floor((right + left) / 2)], //middle element
+  var pivot = arr[mid], //middle element
     i = left, //left pointer
     j = right; //right pointer
-  // console.log(pivot);
-  // bars[j].style.backgroundColor=yellow;
   let tempJ,
     tempI,
     needed = 0;
@@ -560,21 +558,21 @@ async function partition(left, right, mid) {
     await sleep(animationspeed);
     bars[j].style.backgroundColor = blue;
     if (i <= j) {
-      if (j == mid && i < j) {
-        await sleep(animationspeed);
-        bars[j].style.backgroundColor = blue;
-        bars[i].style.backgroundColor = blue;
-        await sleep(animationspeed);
-        var temp = arr[i];
-        arr[i] = arr[j];
-        arr[j] = temp;
-        needed = 1;
-        tempI = i;
-        tempJ = j;
-        i++;
-        j--;
-        continue;
-      }
+      // if (j == mid || i == mid) {
+      //   await sleep(animationspeed);
+      //   bars[j].style.backgroundColor = blue;
+      //   bars[i].style.backgroundColor = blue;
+      //   await sleep(animationspeed);
+      //   var temp = arr[i];
+      //   arr[i] = arr[j];
+      //   arr[j] = temp;
+      //   needed = 1;
+      //   tempI = i;
+      //   tempJ = j;
+      //   i++;
+      //   j--;
+      //   continue;
+      // }
       await sleep(animationspeed);
       bars[j].style.backgroundColor = red;
       bars[i].style.backgroundColor = red;
@@ -583,6 +581,7 @@ async function partition(left, right, mid) {
       var temph = bars[i].style.height;
       bars[i].style.height = bars[j].style.height;
       bars[j].style.height = temph;
+      await sleep(animationspeed);
       bars[j].style.backgroundColor = blue;
       bars[i].style.backgroundColor = blue;
 
@@ -592,24 +591,23 @@ async function partition(left, right, mid) {
       i++;
       j--;
     }
-    await sleep(animationspeed);
   }
-  if (needed == 1) {
-    await sleep(animationspeed);
-    bars[tempJ].style.backgroundColor = red;
-    bars[tempI].style.backgroundColor = red;
+  // if (needed == 1) {
+  //   await sleep(animationspeed);
+  //   bars[tempJ].style.backgroundColor = red;
+  //   bars[tempI].style.backgroundColor = red;
 
-    var temph = bars[tempI].style.height;
-    bars[tempI].style.height = bars[tempJ].style.height;
-    bars[tempJ].style.height = temph;
-    await sleep(animationspeed);
-    bars[tempJ].style.backgroundColor = blue;
-    bars[tempI].style.backgroundColor = blue;
+  //   var temph = bars[tempI].style.height;
+  //   bars[tempI].style.height = bars[tempJ].style.height;
+  //   bars[tempJ].style.height = temph;
+  //   await sleep(animationspeed);
+  //   bars[tempJ].style.backgroundColor = blue;
+  //   bars[tempI].style.backgroundColor = blue;
 
-    var temp = arr[tempJ];
-    arr[tempI] = arr[tempJ];
-    arr[tempJ] = temp;
-  }
+  //   var temp = arr[tempJ];
+  //   arr[tempI] = arr[tempJ];
+  //   arr[tempJ] = temp;
+  // }
   await sleep(animationspeed);
   bars[mid].style.backgroundColor = blue;
   return i;
