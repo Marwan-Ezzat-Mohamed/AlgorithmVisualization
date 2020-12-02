@@ -56,6 +56,17 @@ async function falshGreen() {
   }
 }
 
+async function falshRed() {
+  var bars = Array.from(document.getElementById('addbarshere').children);
+  for (var i = 0; i < bars.length; i++) {
+    bars[i].style.backgroundColor = red;
+  }
+  await sleep(1000);
+  for (var i = 0; i < bars.length; i++) {
+    bars[i].style.backgroundColor = blue;
+  }
+}
+
 async function makeGreen(low, high) {
   var bars = Array.from(document.getElementById('addbarshere').children);
   for (var x = low; x < high; x++) {
@@ -80,6 +91,23 @@ function resetArray() {
     child = element.lastElementChild;
   }
 }
+
+function sorted() {
+  let arrCopy = [...arr];
+  arrCopy.sort(function (a, b) {
+    return a - b;
+  });
+
+  let ok = 1;
+  for (let i = 0; i < arr.length; i++) {
+    if (arr[i] != arrCopy[i]) {
+      ok = 0;
+      return ok;
+    }
+  }
+  return ok;
+}
+
 function generateArray() {
   inputArraySize = arraySizeHandler();
   if (inputArraySize == -1) return;
@@ -142,6 +170,16 @@ function animationArrayForBinarySearch(Array) {
 }
 
 async function doBinarySearch() {
+  if (!sorted()) {
+    alert('Array must be sorted\nUse any sorting method then try again');
+    return;
+  }
+
+  removeSpan();
+  var elem = document.getElementById('my-stopwatch');
+  var timer = new Stopwatch(elem, { delay: 10 });
+  timer.start();
+
   var animationArray = animationArrayForBinarySearch(arr);
   var previous;
   var bars = Array.from(document.getElementById('addbarshere').children);
@@ -167,7 +205,7 @@ async function doBinarySearch() {
       bars[previous.start].style.backgroundColor = yellow;
       bars[previous.end].style.backgroundColor = yellow;
       bars[animation.mid].style.backgroundColor = green;
-      await sleep(3000);
+      await sleep(animationspeed);
       bars[previous.start].style.backgroundColor = blue;
       bars[previous.end].style.backgroundColor = blue;
       bars[animation.mid].style.backgroundColor = blue;
@@ -181,7 +219,7 @@ async function doBinarySearch() {
       bars[animation.start].style.backgroundColor = red;
       bars[animation.end].style.backgroundColor = red;
       console.log('not found');
-      await sleep(3000);
+      await sleep(animationspeed);
       bars[animation.start].style.backgroundColor = blue;
       bars[animation.end].style.backgroundColor = blue;
       break;
@@ -191,9 +229,10 @@ async function doBinarySearch() {
     previous = animation;
   }
   if (Number.isInteger(previous.mid)) {
-    await sleep(3000);
+    await sleep(animationspeed);
     bars[previous.mid].style.backgroundColor = blue;
   }
+  timer.stop();
   return;
 }
 
@@ -220,7 +259,7 @@ function animationArrayForBasicSort(Array) {
         min = j;
       }
     }
-    if (min !== i) {
+    if (min != i) {
       basicSortAnimations.push({
         min: min,
         i,
@@ -229,6 +268,12 @@ function animationArrayForBasicSort(Array) {
       var tmp = Array[i];
       Array[i] = Array[min];
       Array[min] = tmp;
+    } else if (min == i) {
+      basicSortAnimations.push({
+        min: i,
+
+        state: 'no',
+      });
     }
   }
   return basicSortAnimations;
@@ -249,7 +294,7 @@ async function doBasicSort() {
     var animation = animationArray[i];
     await sleep(animationspeed);
     if (previous) {
-      if (Number.isInteger(previous.min))
+      if (Number.isInteger(previous.min) && previous.state != 'no')
         bars[previous.min].style.backgroundColor = blue;
       if (Number.isInteger(previous.j))
         bars[previous.j].style.backgroundColor = blue;
@@ -284,6 +329,10 @@ async function doBasicSort() {
 function animationArrayForLinearSearch(Array) {
   var LinearSearch = [];
   var x = Number(document.getElementById('searchNumber').value);
+  console.log(x);
+  if (x == null || x == '') {
+    return -1;
+  }
   var found = false;
 
   for (var i = 0; i < Array.length; i++) {
@@ -312,11 +361,21 @@ function animationArrayForLinearSearch(Array) {
 
 async function dolinearSearch() {
   var animationArray = animationArrayForLinearSearch(arr);
+  if (animationArray == -1) {
+    alert('Please enter a number to search for...');
+    return;
+  }
+  removeSpan();
+  var elem = document.getElementById('my-stopwatch');
+  var timer = new Stopwatch(elem, { delay: 10 });
+  timer.start();
+
   var previous;
   var bars = Array.from(document.getElementById('addbarshere').children);
+  let found = 0;
   animationspeed = await getAnimationSpeed();
 
-  for (var i = 0; i < animationArray.length; ++i) {
+  for (var i = 0; i < animationArray.length; i++) {
     animationspeed = await getAnimationSpeed();
 
     var animation = animationArray[i];
@@ -329,15 +388,18 @@ async function dolinearSearch() {
     previous = animation;
     if (animation.state === 'found') {
       bars[animation.idx].style.backgroundColor = green;
-      await sleep(1000);
+      found = 1;
+      timer.stop();
+      await sleep(2000);
       bars[animation.idx].style.backgroundColor = blue;
+      break;
     } else if (animation.state === 'searching') {
       bars[animation.idx].style.backgroundColor = yellow;
-    } else if (animation.state === 'not-found') {
-      bars[animation.idx].style.backgroundColor = red;
-      await sleep(1000);
-      bars[animation.idx].style.backgroundColor = blue;
     }
+  }
+  if (!found) {
+    timer.stop();
+    falshRed();
   }
 }
 
