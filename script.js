@@ -1,25 +1,27 @@
 var arr = [];
 var inputArraySize;
-const blue = '#F7ECE1';
-const yellow = '#F5F749';
-const red = '#D95D39';
-const green = '#5BBA6F';
-const black = '#1a66ff';
+const blue = "#F7ECE1";
+const yellow = "#F5F749";
+const red = "#D95D39";
+const green = "#5BBA6F";
+const black = "#1a66ff";
+
+let isSorting = false;
 
 //mint green A2FAA3
 
 //general functions
 
 function removeSpan() {
-  var elem = document.getElementById('stopId');
+  var elem = document.getElementById("stopId");
   if (elem != null) elem.parentNode.removeChild(elem);
   else return;
 }
 
 function arraySizeHandler() {
-  var ArraySize = Number(document.getElementById('arraysize').value);
+  var ArraySize = Number(document.getElementById("arraysize").value);
   if (ArraySize > 100) {
-    alert('Array size must be less than 100');
+    alert("Array size must be less than 100");
     return -1;
   }
   return ArraySize;
@@ -31,7 +33,7 @@ function swap(Array, first_Index, second_Index) {
 }
 
 async function getAnimationSpeed() {
-  var speed = Number(document.getElementById('animation_speed').value);
+  var speed = Number(document.getElementById("animation_speed").value);
   speed = 1000 - speed;
   return speed;
 }
@@ -46,7 +48,7 @@ function sleep(ms) {
 
 //make all bars green when soretd then back to the noraml color
 async function falshGreen() {
-  var bars = Array.from(document.getElementById('addbarshere').children);
+  var bars = Array.from(document.getElementById("addbarshere").children);
   for (var i = 0; i < bars.length; i++) {
     bars[i].style.backgroundColor = green;
   }
@@ -57,7 +59,7 @@ async function falshGreen() {
 }
 
 async function falshRed() {
-  var bars = Array.from(document.getElementById('addbarshere').children);
+  var bars = Array.from(document.getElementById("addbarshere").children);
   for (var i = 0; i < bars.length; i++) {
     bars[i].style.backgroundColor = red;
   }
@@ -68,14 +70,14 @@ async function falshRed() {
 }
 
 async function makeGreen(low, high) {
-  var bars = Array.from(document.getElementById('addbarshere').children);
+  var bars = Array.from(document.getElementById("addbarshere").children);
   for (var x = low; x < high; x++) {
     bars[x].style.backgroundColor = green;
   }
 }
 
 async function resetColor(low, high) {
-  var bars = Array.from(document.getElementById('addbarshere').children);
+  var bars = Array.from(document.getElementById("addbarshere").children);
   for (var x = low; x < high; x++) {
     bars[x].style.backgroundColor = blue;
   }
@@ -84,7 +86,7 @@ async function resetColor(low, high) {
 //////
 
 function resetArray() {
-  var element = document.getElementById('addbarshere');
+  var element = document.getElementById("addbarshere");
   var child = element.lastElementChild;
   while (child) {
     element.removeChild(child);
@@ -117,28 +119,28 @@ function generateArray() {
   for (var i = 0; i < inputArraySize; ++i) {
     var randomNumber = getRandomInt(200) + 7;
     arr.push(randomNumber);
-    var addhere = document.getElementById('addbarshere');
-    var newbar = document.createElement('div');
-    newbar.className = 'bar';
-    newbar.style.height = randomNumber + 'px';
+    var addhere = document.getElementById("addbarshere");
+    var newbar = document.createElement("div");
+    newbar.className = "bar";
+    newbar.style.height = randomNumber + "px";
     addhere.appendChild(newbar);
   }
 }
 function animationArrayForBinarySearch(Array) {
   var binarySearchAnimations = [];
   var start = 0;
-  var end = Number(document.getElementById('arraysize').value);
+  var end = Number(document.getElementById("arraysize").value);
   end = end - 1;
   var found = 0;
-  var x = Number(document.getElementById('searchNumber').value);
+  var x = Number(document.getElementById("searchNumber").value);
   while (start <= end) {
     var mid = Math.floor((start + end) / 2);
     if (Array[mid] === x) {
       binarySearchAnimations.push({
         mid,
-        state: 'found',
+        state: "found",
       });
-      console.log('match', Array[mid], x);
+      console.log("match", Array[mid], x);
       found = 1;
       return binarySearchAnimations;
     }
@@ -147,14 +149,14 @@ function animationArrayForBinarySearch(Array) {
       binarySearchAnimations.push({
         start,
         end,
-        state: 'searching',
+        state: "searching",
       });
     } else {
       start = mid + 1;
       binarySearchAnimations.push({
         start,
         end,
-        state: 'searching',
+        state: "searching",
       });
     }
   }
@@ -162,46 +164,49 @@ function animationArrayForBinarySearch(Array) {
     binarySearchAnimations.push({
       start: start,
       end: end,
-      state: 'not found',
+      state: "not found",
     });
-    console.log('no match', x);
+    console.log("no match", x);
   }
   return binarySearchAnimations;
 }
 
 async function doBinarySearch() {
+  if (isSorting) return;
   if (!sorted()) {
-    alert('Array must be sorted\nUse any sorting method then try again');
+    alert("Array must be sorted\nUse any sorting method then try again");
     return;
   }
 
   removeSpan();
-  var elem = document.getElementById('my-stopwatch');
+  var elem = document.getElementById("my-stopwatch");
   var timer = new Stopwatch(elem, { delay: 10 });
   timer.start();
 
   var animationArray = animationArrayForBinarySearch(arr);
   var previous;
-  var bars = Array.from(document.getElementById('addbarshere').children);
+  var bars = Array.from(document.getElementById("addbarshere").children);
 
   arr.sort((a, b) => a - b);
   bars.sort((a, b) => parseInt(a.style.height) - parseInt(b.style.height));
 
-  for (var i = 0; i < animationArray.length; ++i) {
+  for (const element of animationArray) {
     animationspeed = await getAnimationSpeed();
 
-    var animation = animationArray[i];
+    let animation = element;
     await sleep(animationspeed);
     if (previous) {
-      if (previous.state === 'searching') {
+      if (previous.state === "searching") {
         if (animation.start === previous.start) {
-          bars[previous.end].style.backgroundColor = blue;
-        } else bars[previous.start].style.backgroundColor = blue;
+          if (bars[previous.end])
+            bars[previous.end].style.backgroundColor = blue;
+        } else if (bars[previous.start])
+          bars[previous.start].style.backgroundColor = blue;
       } else {
-        bars[previous.mid].style.backgroundColor = blue;
+        if (bars[previous.mid]) bars[previous.mid].style.backgroundColor = blue;
       }
     }
-    if (animation.state === 'found') {
+    if (animation.state === "found") {
       bars[previous.start].style.backgroundColor = yellow;
       bars[previous.end].style.backgroundColor = yellow;
       bars[animation.mid].style.backgroundColor = green;
@@ -211,17 +216,21 @@ async function doBinarySearch() {
       bars[animation.mid].style.backgroundColor = blue;
 
       break;
-    } else if (animation.state === 'searching') {
-      bars[animation.start].style.backgroundColor = yellow;
-      bars[animation.end].style.backgroundColor = yellow;
+    } else if (animation.state === "searching") {
+      if (bars[animation.start])
+        bars[animation.start].style.backgroundColor = yellow;
+      if (bars[animation.end])
+        bars[animation.end].style.backgroundColor = yellow;
       await sleep(animationspeed);
-    } else if (animation.state === 'not found') {
-      bars[animation.start].style.backgroundColor = red;
-      bars[animation.end].style.backgroundColor = red;
-      console.log('not found');
+    } else if (animation.state === "not found") {
+      if (bars[animation.start])
+        bars[animation.start].style.backgroundColor = red;
+      if (bars[animation.end]) bars[animation.end].style.backgroundColor = red;
+      console.log("not found");
       await sleep(animationspeed);
-      bars[animation.start].style.backgroundColor = blue;
-      bars[animation.end].style.backgroundColor = blue;
+      if (bars[animation.start])
+        bars[animation.start].style.backgroundColor = blue;
+      if (bars[animation.end]) bars[animation.end].style.backgroundColor = blue;
       break;
     } else {
       bars[animation.mid].style.backgroundColor = red;
@@ -243,18 +252,18 @@ function animationArrayForBasicSort(Array) {
     var min = i;
     basicSortAnimations.push({
       min: i,
-      state: 'min',
+      state: "min",
     });
     for (var j = i + 1; j < Array.length; j++) {
       basicSortAnimations.push({
         min: min,
         j,
-        state: 'compare',
+        state: "compare",
       });
       if (Array[min] > Array[j]) {
         basicSortAnimations.push({
           min: j,
-          state: 'min',
+          state: "min",
         });
         min = j;
       }
@@ -263,7 +272,7 @@ function animationArrayForBasicSort(Array) {
       basicSortAnimations.push({
         min: min,
         i,
-        state: 'swap',
+        state: "swap",
       });
       var tmp = Array[i];
       Array[i] = Array[min];
@@ -272,7 +281,7 @@ function animationArrayForBasicSort(Array) {
       basicSortAnimations.push({
         min: i,
 
-        state: 'no',
+        state: "no",
       });
     }
   }
@@ -280,13 +289,14 @@ function animationArrayForBasicSort(Array) {
 }
 
 async function doBasicSort() {
+  if (isSorting) return;
   removeSpan();
-  var elem = document.getElementById('my-stopwatch');
+  var elem = document.getElementById("my-stopwatch");
   var timer = new Stopwatch(elem, { delay: 10 });
   timer.start();
   var animationArray = animationArrayForBasicSort(arr);
   var previous;
-  var bars = Array.from(document.getElementById('addbarshere').children);
+  var bars = Array.from(document.getElementById("addbarshere").children);
 
   for (var i = 0; i < animationArray.length; ++i) {
     animationspeed = await getAnimationSpeed();
@@ -294,16 +304,16 @@ async function doBasicSort() {
     var animation = animationArray[i];
     await sleep(animationspeed);
     if (previous) {
-      if (Number.isInteger(previous.min) && previous.state != 'no')
+      if (Number.isInteger(previous.min) && previous.state != "no")
         bars[previous.min].style.backgroundColor = blue;
       if (Number.isInteger(previous.j))
         bars[previous.j].style.backgroundColor = blue;
     }
     previous = animation;
-    if (animation.state === 'compare') {
+    if (animation.state === "compare") {
       bars[animation.min].style.backgroundColor = black;
       bars[animation.j].style.backgroundColor = yellow;
-    } else if (animation.state === 'swap') {
+    } else if (animation.state === "swap") {
       bars[animation.min].style.backgroundColor = red;
       bars[animation.i].style.backgroundColor = red;
 
@@ -328,9 +338,9 @@ async function doBasicSort() {
 }
 function animationArrayForLinearSearch(Array) {
   var LinearSearch = [];
-  var x = Number(document.getElementById('searchNumber').value);
+  var x = Number(document.getElementById("searchNumber").value);
   console.log(x);
-  if (x == null || x == '') {
+  if (x == null || x == "") {
     return -1;
   }
   var found = false;
@@ -340,38 +350,40 @@ function animationArrayForLinearSearch(Array) {
       found = true;
       LinearSearch.push({
         idx: i,
-        state: 'found',
+        state: "found",
       });
       break;
     } else {
       LinearSearch.push({
         idx: i,
-        state: 'searching',
+        state: "searching",
       });
     }
   }
   if (!found) {
     LinearSearch.push({
       idx: Array.length - 1,
-      state: 'not-found',
+      state: "not-found",
     });
   }
   return LinearSearch;
 }
 
 async function dolinearSearch() {
+  if (isSorting) return;
+  isSorting = true;
   var animationArray = animationArrayForLinearSearch(arr);
   if (animationArray == -1) {
-    alert('Please enter a number to search for...');
+    alert("Please enter a number to search for...");
     return;
   }
   removeSpan();
-  var elem = document.getElementById('my-stopwatch');
+  var elem = document.getElementById("my-stopwatch");
   var timer = new Stopwatch(elem, { delay: 10 });
   timer.start();
 
   var previous;
-  var bars = Array.from(document.getElementById('addbarshere').children);
+  var bars = Array.from(document.getElementById("addbarshere").children);
   let found = 0;
   animationspeed = await getAnimationSpeed();
 
@@ -386,14 +398,14 @@ async function dolinearSearch() {
     }
 
     previous = animation;
-    if (animation.state === 'found') {
+    if (animation.state === "found") {
       bars[animation.idx].style.backgroundColor = green;
       found = 1;
       timer.stop();
       await sleep(2000);
       bars[animation.idx].style.backgroundColor = blue;
       break;
-    } else if (animation.state === 'searching') {
+    } else if (animation.state === "searching") {
       bars[animation.idx].style.backgroundColor = yellow;
     }
   }
@@ -401,13 +413,14 @@ async function dolinearSearch() {
     timer.stop();
     falshRed();
   }
+  isSorting = false;
 }
 
 async function merge(a, low, m, high) {
   var i, j, k;
   var temp = [];
   var len = m - low;
-  var bars = Array.from(document.getElementById('addbarshere').children);
+  var bars = Array.from(document.getElementById("addbarshere").children);
 
   animationspeed = await getAnimationSpeed();
 
@@ -435,7 +448,7 @@ async function merge(a, low, m, high) {
       var idx;
       for (var x = k; x < high; x++) {
         animationspeed = await getAnimationSpeed();
-        if (bars[x].style.height == temp[i] + 'px') {
+        if (bars[x].style.height == temp[i] + "px") {
           idx = x;
           break;
         }
@@ -448,7 +461,7 @@ async function merge(a, low, m, high) {
       if (k != low && k != high - 1) bars[k].style.backgroundColor = yellow;
 
       var temph = bars[k].style.height;
-      bars[k].style.height = temp[i] + 'px';
+      bars[k].style.height = temp[i] + "px";
       bars[idx].style.height = temph;
 
       await sleep(animationspeed);
@@ -484,7 +497,7 @@ async function merge(a, low, m, high) {
     var index;
     for (var x = low; x < high; x++) {
       animationspeed = await getAnimationSpeed();
-      if (bars[x].style.height == temp[i] + 'px') {
+      if (bars[x].style.height == temp[i] + "px") {
         index = x;
         break;
       }
@@ -495,7 +508,7 @@ async function merge(a, low, m, high) {
     bars[index].style.backgroundColor = yellow;
 
     var temph = bars[k].style.height;
-    bars[k].style.height = temp[i] + 'px';
+    bars[k].style.height = temp[i] + "px";
     bars[index].style.height = temph;
 
     await sleep(animationspeed);
@@ -526,19 +539,26 @@ async function mergesort(a, low, high) {
 }
 
 async function doMergeSort() {
+  if (isSorting) return;
+  isSorting = true;
   removeSpan();
-  var elem = document.getElementById('my-stopwatch');
+  var elem = document.getElementById("my-stopwatch");
   var timer = new Stopwatch(elem, { delay: 10 });
   timer.start();
   await mergesort(arr, 0, arr.length);
   timer.stop();
   await falshGreen();
+  isSorting = false;
 }
 
 //bubble sort
 
 async function doBubbleSort() {
-  var bars = Array.from(document.getElementById('addbarshere').children);
+  removeSpan();
+  var elem = document.getElementById("my-stopwatch");
+  var timer = new Stopwatch(elem, { delay: 10 });
+  timer.start();
+  var bars = Array.from(document.getElementById("addbarshere").children);
 
   animationspeed = await getAnimationSpeed();
 
@@ -574,13 +594,14 @@ async function doBubbleSort() {
     }
   }
   falshGreen();
+  timer.stop();
 }
 
 //quick sort
 // logic code from : https://www.guru99.com/quicksort-in-javascript.html
 
 async function partition(left, right, mid) {
-  var bars = Array.from(document.getElementById('addbarshere').children);
+  var bars = Array.from(document.getElementById("addbarshere").children);
 
   animationspeed = await getAnimationSpeed();
   await sleep(animationspeed);
@@ -676,7 +697,7 @@ async function partition(left, right, mid) {
 }
 
 async function quickSort(left, right) {
-  var bars = Array.from(document.getElementById('addbarshere').children);
+  var bars = Array.from(document.getElementById("addbarshere").children);
   var index;
 
   if (arr.length > 1) {
@@ -698,7 +719,7 @@ async function quickSort(left, right) {
 
 async function doQuickSort() {
   removeSpan();
-  var elem = document.getElementById('my-stopwatch');
+  var elem = document.getElementById("my-stopwatch");
   var timer = new Stopwatch(elem, { delay: 10 });
   timer.start();
   await quickSort(0, arr.length - 1);

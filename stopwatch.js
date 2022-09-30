@@ -3,9 +3,9 @@
 class Stopwatch {
   constructor(elem, options) {
     var timer = createTimer(),
-      startButton = createButton('start', start),
-      stopButton = createButton('stop', stop),
-      resetButton = createButton('reset', reset),
+      startButton = createButton("start", start),
+      stopButton = createButton("stop", stop),
+      resetButton = createButton("reset", reset),
       offset,
       clock,
       interval;
@@ -24,17 +24,17 @@ class Stopwatch {
 
     // private functions
     function createTimer() {
-      let span = document.createElement('span');
-      span.setAttribute('class', 'stopwatchSpan');
-      span.setAttribute('id', 'stopId');
+      let span = document.createElement("span");
+      span.setAttribute("class", "stopwatchSpan");
+      span.setAttribute("id", "stopId");
       return span;
     }
 
     function createButton(action, handler) {
-      var a = document.createElement('a');
-      a.href = '#' + action;
+      var a = document.createElement("a");
+      a.href = "#" + action;
       a.innerHTML = action;
-      a.addEventListener('click', function (event) {
+      a.addEventListener("click", function (event) {
         handler();
         event.preventDefault();
       });
@@ -62,7 +62,7 @@ class Stopwatch {
     }
 
     function removeSpan() {
-      var elem = document.getElementById('stopId');
+      var elem = document.getElementById("stopId");
       if (elem != null) elem.parentNode.removeChild(elem);
       else return;
     }
@@ -73,7 +73,7 @@ class Stopwatch {
     }
 
     function render() {
-      timer.innerHTML = clock / 1000;
+      timer.innerHTML = `${clock / 1000} S`;
     }
 
     function delta() {
